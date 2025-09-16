@@ -19,85 +19,63 @@
     background: radial-gradient(1200px 600px at 70% -10%, #112033 0%, var(--bg) 60%) no-repeat var(--bg);
     color:var(--ink);
   }
-  .wrap{max-width:1100px; margin:0 auto; padding:22px}
+  .wrap{max-width:1100px; margin:0 auto; padding:16px}
 
   header{
-    display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    display:flex; flex-direction:column; gap:10px; align-items:flex-start;
     background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
     border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:14px 16px;
     box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
   }
-  .brand{display:flex; align-items:center; gap:10px}
-  .logo{
-    width:38px; height:38px; border-radius:12px; display:grid; place-items:center;
-    background:conic-gradient(from 210deg, var(--brand), var(--accent), var(--brand));
-    box-shadow:0 6px 18px rgba(69,209,255,.35);
-    font-weight:900; color:#001522;
+  @media(min-width:640px){
+    header{flex-direction:row; justify-content:space-between; align-items:center;}
   }
-  .title{font-weight:800; letter-spacing:.4px}
+  .brand{display:flex; align-items:center; gap:10px}
+  .logo{width:34px; height:34px; border-radius:10px; display:grid; place-items:center;
+    background:conic-gradient(from 210deg, var(--brand), var(--accent), var(--brand)); font-weight:900; color:#001522;}
+  .title{font-weight:800}
   .small{font-size:12px; color:var(--muted)}
 
-  .ticker{position:relative; overflow:hidden; width:100%; border-radius:12px; border:1px solid rgba(255,255,255,.06); background:var(--panel); margin-top:10px;}
-  .ticker-track{display:flex; gap:32px; padding:8px 12px; white-space:nowrap; animation:scroll 20s linear infinite;}
-  @keyframes scroll{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
-  .chip{color:var(--ink); font-weight:600}
+  .ticker{overflow:hidden; width:100%; border-radius:12px; border:1px solid rgba(255,255,255,.06); background:var(--panel);}
+  .ticker-track{display:flex; gap:24px; padding:8px 12px; white-space:nowrap; animation:scroll 20s linear infinite;}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
   .chip b{color:var(--brand)}
 
-  .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:16px; margin-top:18px;}
-  .card{
-    background:linear-gradient(180deg,#151c29,#0f1520);
-    border:1px solid rgba(255,255,255,.06); border-radius:var(--radius);
-    box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
-    padding:16px; display:flex; flex-direction:column; gap:12px;
-  }
+  .grid{display:grid; gap:16px; margin-top:16px;}
+  @media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:900px){.grid{grid-template-columns:repeat(3,1fr);}}
 
+  .card{background:linear-gradient(180deg,#151c29,#0f1520); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); box-shadow:0 10px 30px rgba(0,0,0,.35);
+    padding:16px; display:flex; flex-direction:column; gap:12px;}
   .teams{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:8px}
-  .guess{
-    width:100%; background:#0c141f; color:var(--ink);
-    border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:10px;
-    font-weight:700; cursor:pointer; display:flex; align-items:center; gap:8px; justify-content:center;
-  }
-  .guess i{width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:#0a111a; border:1px solid rgba(255,255,255,.06)}
-  .guess.active{background:linear-gradient(90deg, var(--brand), var(--accent)); color:#001522; box-shadow:0 0 12px var(--ring);}
+  .guess{width:100%; background:#0c141f; color:var(--ink); border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:10px; font-weight:700; cursor:pointer;
+    display:flex; align-items:center; gap:8px; justify-content:center; font-size:14px;}
+  .guess.active{background:linear-gradient(90deg, var(--brand), var(--accent)); color:#001522;}
+  .guess i{width:24px; height:24px; border-radius:8px; display:grid; place-items:center; background:#0a111a; border:1px solid rgba(255,255,255,.06)}
 
-  .date-badge{
-    align-self:start; font-size:12px; color:var(--muted);
-    background:rgba(255,255,255,.06); padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.08);
-    width:max-content;
-  }
+  .date-badge{font-size:12px; color:var(--muted); background:rgba(255,255,255,.06); padding:4px 8px; border-radius:999px; width:max-content;}
 
-  .score{
-    display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center;
-    background:#0b121c; border:1px dashed rgba(255,255,255,.08); border-radius:12px; padding:10px 12px;
-  }
-  .score-num{font-size:26px; font-weight:800}
+  .score{display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center; background:#0b121c; border:1px dashed rgba(255,255,255,.08);
+    border-radius:12px; padding:10px 12px;}
+  .score-num{font-size:22px; font-weight:800}
   .blur .score-num{filter:blur(6px)}
 
-  /* BIG reveal below the score, disabled until a guess is picked */
-  .reveal-main{
-    width:100%; padding:12px 16px; border-radius:12px; border:none; font-weight:800; cursor:not-allowed;
-    background:linear-gradient(90deg, #6b7f8f, #93a5b1); color:#0c141f; opacity:.7;
-  }
-  .reveal-main.enabled{
-    cursor:pointer; opacity:1; background:linear-gradient(90deg, var(--accent), #d6ffd9); color:#00320b;
-    box-shadow:0 8px 22px rgba(123,255,136,.25);
-  }
+  .reveal-main{width:100%; padding:10px 14px; border-radius:12px; border:none; font-weight:800; cursor:not-allowed;
+    background:#6b7f8f; color:#0c141f; opacity:.7; font-size:15px;}
+  .reveal-main.enabled{cursor:pointer; opacity:1; background:linear-gradient(90deg, var(--accent), #d6ffd9); color:#00320b;}
 
-  .vote{display:flex; gap:8px; align-items:center; justify-content:flex-end}
-  .btn{padding:8px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.08); background:#0c141f; color:var(--ink); cursor:pointer; font-weight:700;}
-  .btn:hover{transform:translateY(-1px)}
+  .vote{display:flex; gap:8px; justify-content:flex-end}
+  .btn{padding:6px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.08); background:#0c141f; color:var(--ink); cursor:pointer; font-weight:600; font-size:13px;}
   .up{border-color:rgba(123,255,136,.3)} .down{border-color:rgba(255,123,123,.3)}
 
-  .email{margin-top:22px; display:flex; gap:10px; flex-wrap:wrap; padding:14px; border-radius:var(--radius);
+  .email{margin-top:20px; display:flex; gap:8px; flex-wrap:wrap; padding:12px; border-radius:var(--radius);
     background:linear-gradient(180deg, rgba(69,209,255,.08), rgba(69,209,255,.02)); border:1px solid rgba(69,209,255,.25);}
-  .email input{flex:1; min-width:240px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#091119; color:var(--ink); outline:none;}
-  .email button{padding:12px 16px; border-radius:12px; border:none; font-weight:800; cursor:pointer;
-    background:linear-gradient(90deg, var(--accent), #d6ffd9); color:#00320b; box-shadow:0 8px 22px rgba(123,255,136,.25);}
+  .email input{flex:1; min-width:180px; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#091119; color:var(--ink);}
+  .email button{padding:10px 14px; border-radius:12px; border:none; font-weight:700; cursor:pointer; background:linear-gradient(90deg, var(--accent), #d6ffd9); color:#00320b;}
 
-  footer{margin:28px 0; text-align:center; color:var(--muted); font-size:12px}
-  .toast{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:#0c141f;
-    border:1px solid rgba(69,209,255,.35); color:var(--ink); padding:10px 14px; border-radius:10px;
-    box-shadow:0 10px 30px rgba(0,0,0,.5); display:none;}
+  footer{margin:24px 0; text-align:center; color:var(--muted); font-size:12px}
+  .toast{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:#0c141f; border:1px solid rgba(69,209,255,.35);
+    color:var(--ink); padding:8px 12px; border-radius:10px; display:none;}
 </style>
 </head>
 <body>
@@ -105,10 +83,7 @@
     <header>
       <div class="brand">
         <div class="logo">🏈</div>
-        <div>
-          <div class="title">NFL Scores – Yesterday</div>
-          <div class="small">Guess the winner • then hit Reveal • vote 🔺🔻</div>
-        </div>
+        <div><div class="title">NFL Scores – Yesterday</div><div class="small">Guess • Reveal • Vote 🔺🔻</div></div>
       </div>
       <div class="small">Daily email before work • 100% free</div>
       <div class="ticker"><div class="ticker-track" id="ticker"></div></div>
@@ -128,123 +103,70 @@
   <div class="toast" id="toast">Thanks! Check your inbox for confirmation.</div>
 
 <script>
-  // --- demo data (swap with API later) ---
-  const demo = {
-    dateLabel: new Date(Date.now()-86400000)
-      .toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}),
-    games: [
-      {home:"Eagles",  away:"Cowboys",  homeEmoji:"🦅", awayEmoji:"⭐", homeScore:27, awayScore:24},
-      {home:"Chiefs",  away:"Ravens",   homeEmoji:"💛", awayEmoji:"🟣", homeScore:31, awayScore:28},
-      {home:"49ers",   away:"Seahawks", homeEmoji:"🟥", awayEmoji:"🟦", homeScore:24, awayScore:10},
-      {home:"Jets",    away:"Patriots", homeEmoji:"🟢", awayEmoji:"🔵", homeScore:23, awayScore:20},
-    ]
-  };
+const demo = {
+  dateLabel: new Date(Date.now()-86400000).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}),
+  games:[
+    {home:"Eagles",away:"Cowboys",homeEmoji:"🦅",awayEmoji:"⭐",homeScore:27,awayScore:24},
+    {home:"Chiefs",away:"Ravens",homeEmoji:"💛",awayEmoji:"🟣",homeScore:31,awayScore:28},
+    {home:"49ers",away:"Seahawks",homeEmoji:"🟥",awayEmoji:"🟦",homeScore:24,awayScore:10},
+    {home:"Jets",away:"Patriots",homeEmoji:"🟢",awayEmoji:"🔵",homeScore:23,awayScore:20},
+  ]
+};
 
-  // ticker
-  const t = document.getElementById('ticker');
-  const chips = demo.games.map(g => `<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ');
-  t.innerHTML = chips + ' • ' + chips;
+// ticker
+document.getElementById('ticker').innerHTML = demo.games.map(g=>`<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ') + ' • ';
 
-  // build cards
-  const wrap = document.getElementById('games');
-  document.getElementById('yr').textContent = new Date().getFullYear();
-  const guesses = {}; // idx -> 'home' | 'away'
-  const revealed = {}; // prevent double reveal spam
+// cards
+const wrap=document.getElementById('games'); document.getElementById('yr').textContent=new Date().getFullYear();
+const guesses={}, revealed={};
+function cardHTML(g,idx){return`
+  <article class="card" data-idx="${idx}">
+    <div class="teams">
+      <button class="guess" data-team="away-${idx}"><i>${g.awayEmoji}</i>${g.away}</button>
+      <div class="small">at</div>
+      <button class="guess" data-team="home-${idx}"><i>${g.homeEmoji}</i>${g.home}</button>
+    </div>
+    <div class="date-badge">Yesterday • ${demo.dateLabel}</div>
+    <div class="score blur" id="score-${idx}">
+      <div class="score-num">${g.awayScore}</div><div class="small">Final</div><div class="score-num">${g.homeScore}</div>
+    </div>
+    <button class="reveal-main" id="reveal-${idx}" data-reveal="${idx}" disabled>Reveal</button>
+    <div class="small" id="guess-${idx}">Your guess: <b>—</b></div>
+    <div class="vote"><button class="btn up" data-vote="up-${idx}">🔺 Good game</button><button class="btn down" data-vote="down-${idx}">🔻 Meh</button></div>
+    <div class="small" id="winner-${idx}">Winner: <b>?</b></div>
+  </article>`;}
+wrap.innerHTML=demo.games.map(cardHTML).join('');
 
-  function cardHTML(g, idx){
-    return `
-      <article class="card" data-idx="${idx}">
-        <div class="teams">
-          <button class="guess" data-team="away-${idx}"><i>${g.awayEmoji}</i>${g.away}</button>
-          <div class="small">at</div>
-          <button class="guess" data-team="home-${idx}"><i>${g.homeEmoji}</i>${g.home}</button>
-        </div>
+function setReveal(idx,on){const b=document.getElementById(`reveal-${idx}`);b.disabled=!on;b.classList.toggle('enabled',on);}
+const toast=msg=>{const el=document.getElementById('toast');el.textContent=msg;el.style.display='block';setTimeout(()=>el.style.display='none',2000);};
 
-        <div class="date-badge">Yesterday • ${demo.dateLabel}</div>
-
-        <div class="score blur" id="score-${idx}">
-          <div class="score-num">${g.awayScore}</div>
-          <div class="small">Final</div>
-          <div class="score-num">${g.homeScore}</div>
-        </div>
-
-        <button class="reveal-main" id="reveal-${idx}" data-reveal="${idx}" disabled>Reveal</button>
-
-        <div class="small" id="guess-${idx}">Your guess: <b>—</b></div>
-        <div class="vote">
-          <button class="btn up"   data-vote="up-${idx}">🔺 Good game</button>
-          <button class="btn down" data-vote="down-${idx}">🔻 Meh</button>
-        </div>
-        <div class="small" id="winner-${idx}" style="opacity:.85;">Winner: <b>?</b></div>
-      </article>`;
+document.addEventListener('click',e=>{
+  const gbtn=e.target.closest('.guess');
+  if(gbtn){const[side,idx]=gbtn.dataset.team.split('-');guesses[idx]=side;
+    document.querySelectorAll(`.card[data-idx="${idx}"] .guess`).forEach(b=>b.classList.remove('active'));
+    gbtn.classList.add('active');
+    const g=demo.games[idx];const picked=side==="home"?g.home:g.away;
+    document.getElementById(`guess-${idx}`).innerHTML=`Your guess: <b>${picked}</b>`;
+    setReveal(idx,true);
   }
-  wrap.innerHTML = demo.games.map(cardHTML).join('');
+  const rev=e.target.closest('[data-reveal]');
+  if(rev){const idx=+rev.dataset.reveal;if(rev.disabled){toast('Pick a team first 🙂');return;}
+    if(revealed[idx])return;revealed[idx]=true;
+    document.getElementById(`score-${idx}`).classList.remove('blur');
+    const g=demo.games[idx];const winner=g.homeScore===g.awayScore?'Tie':(g.homeScore>g.awayScore?g.home:g.away);
+    document.getElementById(`winner-${idx}`).innerHTML=`Winner: <b>${winner}</b>`;
+    if(guesses[idx]){const picked=guesses[idx]==="home"?g.home:g.away;
+      const result=winner==='Tie'?'— tie —':(picked===winner?"✅ Correct!":"❌ Wrong");
+      document.getElementById(`guess-${idx}`).innerHTML+=` (${result})`;}}
+  const vote=e.target.closest('[data-vote]');
+  if(vote){const key='voted-'+vote.dataset.vote;if(localStorage.getItem(key)){toast("Already counted ✅");return;}
+    localStorage.setItem(key,'1');toast("Thanks for the vote!");}
+});
 
-  const toast = (msg)=>{
-    const el = document.getElementById('toast'); el.textContent = msg; el.style.display='block';
-    setTimeout(()=> el.style.display='none', 2000);
-  };
-
-  // enable/disable reveal per card
-  function setRevealEnabled(idx, on){
-    const btn = document.getElementById(`reveal-${idx}`);
-    if(!btn) return;
-    btn.disabled = !on;
-    btn.classList.toggle('enabled', on);
-  }
-
-  document.addEventListener('click', (e)=>{
-    // choose guess
-    const guessBtn = e.target.closest('.guess');
-    if(guessBtn){
-      const [side, idx] = guessBtn.dataset.team.split('-');
-      guesses[idx] = side;
-      document.querySelectorAll(`.card[data-idx="${idx}"] .guess`).forEach(b=>b.classList.remove('active'));
-      guessBtn.classList.add('active');
-      const g = demo.games[idx];
-      const picked = side==="home" ? g.home : g.away;
-      document.getElementById(`guess-${idx}`).innerHTML = `Your guess: <b>${picked}</b>`;
-      setRevealEnabled(idx, true); // turn on the big button
-    }
-
-    // reveal results (only if enabled)
-    const rev = e.target.closest('[data-reveal]');
-    if(rev){
-      const idx = +rev.dataset.reveal;
-      if(rev.disabled) { toast('Pick a team first 🙂'); return; }
-      if(revealed[idx]) { return; }
-      revealed[idx] = true;
-
-      document.getElementById(`score-${idx}`).classList.remove('blur');
-
-      const g = demo.games[idx];
-      const winner = g.homeScore===g.awayScore ? 'Tie' : (g.homeScore>g.awayScore ? g.home : g.away);
-      document.getElementById(`winner-${idx}`).innerHTML = `Winner: <b>${winner}</b>`;
-
-      if(guesses[idx]){
-        const picked = guesses[idx]==="home"?g.home:g.away;
-        const result = (winner==='Tie') ? '— tie —' : (picked===winner ? "✅ Correct!" : "❌ Wrong");
-        document.getElementById(`guess-${idx}`).innerHTML += ` (${result})`;
-      }
-    }
-
-    // votes (local only)
-    const vote = e.target.closest('[data-vote]');
-    if(vote){
-      const key = 'voted-' + vote.dataset.vote;
-      if(localStorage.getItem(key)){ toast("Already counted ✅"); return; }
-      localStorage.setItem(key, '1');
-      toast("Thanks for the vote!");
-    }
-  });
-
-  // email submit guard
-  const form = document.getElementById('emailForm');
-  form.addEventListener('submit', (e)=>{
-    if(form.action.includes('YOUR_FORMSPREE_ENDPOINT_HERE')){
-      e.preventDefault(); alert('Add your Formspree endpoint first.');
-    }
-  });
+// email
+document.getElementById('emailForm').addEventListener('submit',e=>{
+  if(e.target.action.includes('YOUR_FORMSPREE_ENDPOINT_HERE')){e.preventDefault();alert('Add your Formspree endpoint first.');}
+});
 </script>
 </body>
 </html>
