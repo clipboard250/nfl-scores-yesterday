@@ -65,8 +65,13 @@ h1.title{margin:0;font-weight:800;letter-spacing:.4px;font-size:22px}
 @keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
 .chip b{color:var(--brand)}
 
-/* Grid - IMPROVED mobile-first */
-.grid{display:grid;gap:16px;margin-top:18px;grid-template-columns:1fr}
+/* Grid - MOBILE FIRST ONLY */
+.grid{
+  display:grid;
+  gap:16px;
+  margin-top:18px;
+  grid-template-columns:1fr;
+}
 
 /* Cards */
 .card{background:linear-gradient(180deg,#151c29,#0f1520);border:1px solid rgba(255,255,255,.06);
@@ -118,22 +123,32 @@ footer a:hover{color:var(--brand)}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#0c141f;border:1px solid rgba(69,209,255,.35);color:#e7f0ff;padding:12px 16px;border-radius:12px;display:none;
   box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:1000}
 
-/* Tablet breakpoint */
-@media(min-width:600px){
-  .grid{grid-template-columns:repeat(2,1fr)}
+/* Tablet breakpoint - ONLY FOR LARGER SCREENS */
+@media screen and (min-width:700px){
+  .grid{grid-template-columns:repeat(2,1fr) !important}
   h1.title{font-size:24px}
   .wrap{padding:20px}
 }
 
-/* Desktop breakpoint */
-@media(min-width:1000px){
-  .grid{grid-template-columns:repeat(3,1fr)}
+/* Desktop breakpoint - ONLY FOR LARGER SCREENS */
+@media screen and (min-width:1000px){
+  .grid{grid-template-columns:repeat(3,1fr) !important}
   .wrap{padding:24px}
 }
 
-/* CRITICAL: Mobile override - must be LAST */
-@media (max-width:599px){
-  .grid{grid-template-columns:1fr !important}
+/* CRITICAL: Mobile override - NUCLEAR OPTION */
+@media screen and (max-width:700px){
+  .grid{
+    grid-template-columns:1fr !important;
+    display:grid !important;
+  }
+}
+
+@media screen and (max-width:599px){
+  .grid{
+    grid-template-columns:1fr !important;
+    display:grid !important;
+  }
   .wrap{padding:12px}
   .score-num{font-size:20px}
   .reveal-main{font-size:14px;padding:10px 12px}
@@ -142,6 +157,18 @@ footer a:hover{color:var(--brand)}
   .header{padding:12px}
   h1.title{font-size:20px}
   .coffee{margin:16px 0}
+}
+
+/* EVEN MORE AGGRESSIVE - iPhone specific */
+@media screen and (max-device-width:480px){
+  .grid{
+    grid-template-columns:1fr !important;
+    display:block !important;
+  }
+  .grid .card{
+    width:100% !important;
+    margin-bottom:16px !important;
+  }
 }
 </style>
 </head>
