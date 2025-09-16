@@ -3,20 +3,27 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NFL Scores – Yesterday (Guess & Reveal)</title>
-<meta name="description" content="Flip cards to reveal yesterday’s NFL scores. Guess who won, vote the vibe, and get one email daily after results post. Entertainment only. Not affiliated with the NFL."/>
+<title>Yesterday’s NFL Scores — Guess & Reveal</title>
+<meta name="description" content="Flip cards to reveal yesterday’s NFL scores. Guess the winner, vote the vibe, and get one email daily after results post. Entertainment only. Not affiliated with the NFL."/>
 
-<!-- Open Graph -->
-<meta property="og:title" content="NFL Scores – Yesterday (Guess & Reveal)">
-<meta property="og:description" content="Guess the winner, Reveal the score, Vote the vibe. One email daily after results post.">
-<meta property="og:image" content="https://nflscoresyesterday.com/og-image.png">
+<!-- Canonical + Open Graph + Twitter (helps iMessage previews too) -->
+<link rel="canonical" href="https://nflscoresyesterday.com/">
+<meta property="og:title" content="Yesterday’s NFL Scores — Guess & Reveal">
+<meta property="og:description" content="Guess • Reveal • Vote. One email daily after results post.">
+<meta property="og:image" content="https://nflscoresyesterday.com/og-image.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:url" content="https://nflscoresyesterday.com">
 <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Yesterday’s NFL Scores — Guess & Reveal">
+<meta name="twitter:description" content="Guess • Reveal • Vote. One email daily after results post.">
+<meta name="twitter:image" content="https://nflscoresyesterday.com/og-image.png?v=2">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-<!-- ====== JSON-LD Schema ====== -->
+<!-- ===== JSON-LD Schema ===== -->
 <script type="application/ld+json" id="org">
 {
   "@context": "https://schema.org",
@@ -42,7 +49,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "NFL Scores – Yesterday (Guess & Reveal)",
+  "name": "Yesterday’s NFL Scores — Guess & Reveal",
   "url": "https://nflscoresyesterday.com",
   "description": "Guess the winner, reveal yesterday’s NFL scores, and get a daily email after results post.",
   "publisher": {"@id":"#org"},
@@ -50,8 +57,8 @@
     "@type": "FAQPage",
     "mainEntity": [
       {"@type":"Question","name":"Is this affiliated with the NFL?","acceptedAnswer":{"@type":"Answer","text":"No. Fan-built, just for fun. Not affiliated with or endorsed by the NFL."}},
-      {"@type":"Question","name":"Is guessing here gambling?","acceptedAnswer":{"@type":"Answer","text":"No. There are no wagers, prizes, or paid entries. It’s a free guessing game for entertainment only."}},
-      {"@type":"Question","name":"When do emails go out?","acceptedAnswer":{"@type":"Answer","text":"Once daily after final scores are posted for the previous day’s games. Unsubscribe anytime."}}
+      {"@type":"Question","name":"Is guessing here gambling?","acceptedAnswer":{"@type":"Answer","text":"No money, no prizes, no odds — it’s a free reveal game for entertainment only."}},
+      {"@type":"Question","name":"When do emails go out?","acceptedAnswer":{"@type":"Answer","text":"Once daily after final scores are posted for the previous day’s games."}}
     ]
   }
 }
@@ -71,7 +78,7 @@
   }
   .wrap{max-width:1100px; margin:0 auto; padding:16px}
 
-  /* HEADER (original layout, uncluttered) */
+  /* Header (clean like your original) */
   header{
     display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;
     background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
@@ -85,21 +92,21 @@
     box-shadow:0 6px 18px rgba(69,209,255,.35);
     font-weight:900; color:#001522;
   }
-  .title{font-weight:800; letter-spacing:.4px}
+  h1.title{font-weight:800; letter-spacing:.4px; margin:0}
   .small{font-size:12px; color:var(--muted)}
 
-  /* ticker */
+  /* Ticker */
   .ticker{overflow:hidden; width:100%; border-radius:12px; border:1px solid rgba(255,255,255,.06); background:var(--panel); margin-top:10px;}
   .ticker-track{display:flex; gap:36px; padding:10px 14px; white-space:nowrap; animation:scroll 22s linear infinite;}
   @keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
   .chip b{color:var(--brand)}
 
-  /* GRID: mobile-first */
+  /* Grid — MOBILE FIRST */
   .grid{display:grid; gap:16px; margin-top:18px; grid-template-columns:1fr;}
   @media(min-width:700px){ .grid{grid-template-columns:repeat(2,1fr);} }
   @media(min-width:1024px){ .grid{grid-template-columns:repeat(3,1fr);} }
 
-  /* CARDS */
+  /* Cards */
   .card{
     background:linear-gradient(180deg,#151c29,#0f1520);
     border:1px solid rgba(255,255,255,.06); border-radius:var(--radius);
@@ -114,18 +121,14 @@
   }
   .guess i{width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:#0a111a; border:1px solid rgba(255,255,255,.06)}
   .guess.active{background:linear-gradient(90deg, var(--brand), var(--accent)); color:#001522; box-shadow:0 0 12px var(--ring);}
-
   .date-badge{font-size:12px; color:var(--muted); background:rgba(255,255,255,.06); padding:4px 8px; border-radius:999px; width:max-content;}
-
   .score{display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center;
     background:#0b121c; border:1px dashed rgba(255,255,255,.08); border-radius:12px; padding:10px 12px;}
   .score-num{font-size:24px; font-weight:800}
   .blur .score-num{filter:blur(6px)}
-
   .reveal-main{width:100%; padding:10px 14px; border-radius:12px; border:none; font-weight:800; cursor:not-allowed;
     background:#6b7f8f; color:#0c141f; opacity:.7;}
   .reveal-main.enabled{cursor:pointer; opacity:1; background:linear-gradient(90deg, var(--brand), #9cf); color:#06121d; box-shadow:0 8px 22px var(--ring);}
-
   .vote{display:flex; gap:8px; justify-content:flex-end}
   .btn{padding:6px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.08); background:#0c141f; color:var(--ink); cursor:pointer; font-weight:700; font-size:13px;}
   .up{border-color:rgba(123,255,136,.3)} .down{border-color:rgba(255,123,123,.3)}
@@ -144,7 +147,15 @@
   details.faq summary{cursor:pointer; font-weight:800}
 
   footer{margin:28px 0; text-align:center; color:var(--muted); font-size:12px}
-  .toast{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:#0c141f; border:1px solid rgba(69,209,255,.35); color:var(--ink); padding:10px 14px; border-radius:10px; display:none;}
+  .toast{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:#0c141f; border:1px solid rgba(69,209,255,.35); color:#e7f0ff; padding:10px 14px; border-radius:10px; display:none;}
+
+  /* FINAL mobile override (forces 1-col on phones, busts Safari cache issues) */
+  @media (max-width:699px){
+    .grid{ grid-template-columns:1fr !important; }
+    .wrap{ padding:12px }
+    .score-num{ font-size:20px }
+    .reveal-main{ font-size:14px; padding:10px 12px }
+  }
 </style>
 </head>
 <body>
@@ -153,7 +164,7 @@
       <div class="brand">
         <div class="logo">🏈</div>
         <div>
-          <div class="title">NFL Scores – Yesterday</div>
+          <h1 class="title">Yesterday’s NFL Scores</h1>
           <div class="small">Guess • Reveal • Vote 🔺🔻</div>
         </div>
       </div>
@@ -173,6 +184,8 @@
     <form class="email" id="emailForm" action="https://formspree.io/f/xvgbjpvk" method="POST">
       <input type="email" name="email" placeholder="Get one email daily after scores are final" required/>
       <input type="hidden" name="source" value="nflscoresyesterday.com"/>
+      <!-- send to your own page after submit -->
+      <input type="hidden" name="_redirect" value="https://nflscoresyesterday.com/thanks.html">
       <button type="submit">Send me yesterday’s scores</button>
       <div class="small">Unsubscribe anytime with one click.</div>
     </form>
@@ -183,13 +196,13 @@
       <div id="fact" class="small" style="margin-top:8px;"></div>
     </details>
 
-    <!-- Real FAQ -->
+    <!-- FAQ -->
     <details class="faq">
-      <summary>FAQ: How voting works, live scores, and email timing</summary>
+      <summary>FAQ: Voting, live scores, and email timing</summary>
       <div class="small" style="margin-top:8px; display:grid; gap:8px;">
-        <div><b>Voting:</b> right now votes are stored on your device only (local storage) so people can’t spam the buttons. To make votes visible to everyone, plug this into a tiny backend like Supabase/Firestore (notes below).</div>
-        <div><b>Scores:</b> this demo renders from a JavaScript array. You can switch to a simple JSON file (<code>scores.json</code>) or a scores API (see starter snippet in the code).</div>
-        <div><b>Email timing:</b> one email goes out daily after final scores are posted for the previous day’s games.</div>
+        <div><b>Voting:</b> stored on your device now (prevents spam). To show global totals we’ll plug in Supabase or Firebase later.</div>
+        <div><b>Scores:</b> this demo reads a JS array. You can switch to a <code>scores.json</code> or a scores API without changing the UI.</div>
+        <div><b>Email timing:</b> one email goes out daily after final scores are posted for the previous day.</div>
       </div>
     </details>
 
@@ -199,10 +212,10 @@
     </footer>
   </div>
 
-  <div class="toast" id="toast">Thanks! Check your inbox for confirmation.</div>
+  <div class="toast" id="toast">Thanks! Check your inbox.</div>
 
 <script>
-/* ------------------ demo data; API/JSON hook below ------------------ */
+/* -------- demo data; API/JSON hook lives at bottom -------- */
 const demo = {
   dateLabel: new Date(Date.now()-86400000)
     .toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}),
@@ -214,11 +227,11 @@ const demo = {
   ]
 };
 
-/* ----------- Ticker ----------- */
+/* Ticker */
 document.getElementById('ticker').innerHTML =
   demo.games.map(g=>`<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ') + ' • ';
 
-/* ----------- Build cards (with pick-a-winner + big Reveal) ----------- */
+/* Cards (pick, then big Reveal) */
 document.getElementById('yr').textContent = new Date().getFullYear();
 const wrap = document.getElementById('games');
 const guesses = {}, revealed = {};
@@ -252,12 +265,11 @@ function cardHTML(g, idx){
 }
 wrap.innerHTML = demo.games.map(cardHTML).join('');
 
-/* ----------- Interactions ----------- */
+/* Interactions */
 const toast = msg => { const el = document.getElementById('toast'); el.textContent = msg; el.style.display='block'; setTimeout(()=> el.style.display='none', 2000); };
 const setReveal = (idx,on)=>{const b=document.getElementById(`reveal-${idx}`); if(!b) return; b.disabled=!on; b.classList.toggle('enabled', on);};
 
 document.addEventListener('click', (e)=>{
-  // Guess choose
   const gbtn = e.target.closest('.guess');
   if(gbtn){
     const [side, idx] = gbtn.dataset.team.split('-');
@@ -267,7 +279,6 @@ document.addEventListener('click', (e)=>{
     setReveal(idx, true);
   }
 
-  // Reveal
   const rev = e.target.closest('[data-reveal]');
   if(rev){
     const idx = +rev.dataset.reveal;
@@ -280,15 +291,15 @@ document.addEventListener('click', (e)=>{
     const winner = g.homeScore===g.awayScore ? 'Tie' : (g.homeScore>g.awayScore ? g.home : g.away);
     document.getElementById(`winner-${idx}`).innerHTML = `Winner: <b>${winner}</b>`;
 
-    // show correct/wrong
     if(guesses[idx]){
       const picked = guesses[idx]==="home"?g.home:g.away;
-      const result = winner==='Tie' ? '— tie —' : (picked===winner ? "✅ Correct!" : "❌ Wrong");
+      const result = winner==='Tie'
+        ? "— tie —"
+        : (picked===winner ? "🏆 Nailed it!" : "👍 Good try — new picks tomorrow");
       document.getElementById(`winner-${idx}`).innerHTML += ` • Your guess: <b>${picked}</b> ${result}`;
     }
   }
 
-  // Votes (local only for now)
   const vote = e.target.closest('[data-vote]');
   if(vote){
     const key = 'voted-' + vote.dataset.vote;
@@ -298,32 +309,26 @@ document.addEventListener('click', (e)=>{
   }
 });
 
-/* ----------- Email submit feedback ----------- */
+/* Email submit feedback */
 document.getElementById('emailForm').addEventListener('submit', ()=>{
-  setTimeout(()=>{ toast("Thanks! Check your inbox") }, 200);
+  setTimeout(()=>{ toast("Thanks! Check your inbox.") }, 200);
 });
 
-/* ----------- NFL Fact of the Day (rotates by day) ----------- */
+/* NFL Fact of the Day (rotates by day) */
 const facts = [
-  "The NFL was founded in 1920 as the American Professional Football Association; it took the name 'National Football League' in 1922.",
-  "The Super Bowl trophy is named for Vince Lombardi, who led the Packers to victories in the first two Super Bowls.",
-  "The two-point conversion was adopted by the NFL in 1994.",
-  "Overtime rules changed in 2010 to reduce the chance a coin-toss alone decides the game.",
-  "The forward pass was legalized in 1906 to make football safer and more open."
+  "The NFL began in 1920 as the APFA; it was renamed the National Football League in 1922.",
+  "The Super Bowl trophy is named for Vince Lombardi, winner of the first two Super Bowls.",
+  "The two-point conversion entered the NFL in 1994.",
+  "Overtime was revised in 2010 to reduce sudden ‘coin-toss wins’.",
+  "The forward pass (1906) changed football forever and made it safer."
 ];
-const dayIndex = Math.floor(Date.now() / 86400000) % facts.length;
-document.getElementById('fact').textContent = facts[dayIndex];
+const idx = Math.floor(Date.now() / 86400000) % facts.length;
+document.getElementById('fact').textContent = facts[idx];
 
-/* ----------- OPTIONAL: load from /scores.json if present ----------- */
-/* 
-// Put a file scores.json at your site root shaped like:
-// {"dateLabel":"Sep 15, 2025","games":[{"home":"Eagles","away":"Cowboys","homeEmoji":"🦅","awayEmoji":"⭐","homeScore":27,"awayScore":24}, ... ]}
-// Then uncomment this to replace demo with live data.
-
+/* OPTIONAL: swap demo with /scores.json later
 fetch('/scores.json').then(r => r.ok ? r.json() : null).then(data=>{
   if(!data) return;
   Object.assign(demo, data);
-  // rebuild UI with real data:
   document.getElementById('ticker').innerHTML =
     demo.games.map(g=>`<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ') + ' • ';
   wrap.innerHTML = demo.games.map(cardHTML).join('');
