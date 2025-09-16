@@ -1,1 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>NFL Scores – Yesterday (Guess & Reveal)</title>
+  <meta name="description" content="Quick, fun NFL scoreboard for yesterday. Guess the winner, reveal the score, and get a daily email before work."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0f14; --panel:#121822; --card:#141c28; --ink:#e7f0ff; --muted:#9bb1cc;
+      --brand:#45d1ff; --accent:#7bff88; --warn:#ff7b7b; --ring:rgba(69,209,255,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box} html,body{height:100%}
+    body{
+      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 70% -10%, #112033 0%, var(--bg) 60%) no-repeat var(--bg);
+      color:var(--ink);
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding:22px}
+    header{
+      display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+      border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:14px 16px;
+      box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+    }
+    .brand{display:flex; align-items:center; gap:10px}
+    .logo{
+      width:38px; height:38px; border-radius:12px; display:grid; place-items:center;
+      background:conic-gradient(from 210deg, var(--brand), var(--accent), var(--brand));
+      box-shadow:0 6px 18px rgba(69,209,255,.35);
+      font-weight:900; color:#001522;
+    }
+    .title{font-weight:800; letter-spacing:.4px}
+    .ticker{
+      position:relative; overflow:hidden; width:100%; border-radius:12px;
+      border:1px solid rgba(255,255,255,.06); background:var(--panel); margin-top:10px;
+    }
+    .ticker-track{
+      display:flex; gap:32px; padding:8px 0; white-space:nowrap; animation:scroll 20s linear infinite;
+    }
+    @keyframes scroll{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .chip{color:var(--ink); font-weight:600}
+    .chip b{color:var(--brand)}
+    .grid{
+      display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+      gap:16px; margin-top:18px;
+    }
+    .card{
+      background:linear-gradient(180deg,#151c29,#0f1520);
+      border:1px solid rgba(255,255,255,.06); border-radius:var(--radius);
+      box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+      padding:16px; display:flex; flex-direction:column; gap:12px; position:relative;
+    }
+    .badge{
+      position:absolute; top:12px; right:12px; font-size:12px; color:var(--muted);
+      background:rgba(255,255,255,.06); padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.08);
+    }
+    .teams{display:flex; justify-content:space-between; align-items:center; gap:8px}
+    .tm{display:flex; align-items:center; gap:10px; font-weight:700}
+    .tm i{width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:#0a111a; border:1px solid rgba(255,255,255,.06)}
+    .score{
+      display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center;
+      background:#0b121c; border:1px dashed rgba(255,255,255,.08); border-radius:12px; padding:10px 12px;
+    }
+    .reveal{cursor:pointer; font-weight:700; border:none; border-radius:10px; padding:10px 12px;
+      background:linear-gradient(90deg, var(--brand), #9cf); color:#06121d;
+      box-shadow:0 8px 22px var(--ring);
+    }
+    .score-num{font-size:26px; font-weight:800}
+    .hide .score-val{filter:blur(10px)} .hide .score-num{filter:blur(6px)}
+    .vote{display:flex; gap:8px; align-items:center; justify-content:flex-end}
+    .btn{
+      padding:8px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.08);
+      background:#0c141f; color:var(--ink); cursor:pointer; font-weight:700;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .up{border-color:rgba(123,255,136,.3)} .down{border-color:rgba(255,123,123,.3)}
+    .email{
+      margin-top:22px; display:flex; gap:10px; flex-wrap:wrap; padding:14px; border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(69,209,255,.08), rgba(69,209,255,.02));
+      border:1px solid rgba(69,209,255,.25);
+    }
+    .email input{
+      flex:1; min-width:240px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
+      background:#091119; color:var(--ink); outline:none;
+    }
+    .email button{
+      padding:12px 16px; border-radius:12px; border:none; font-weight:800; cursor:pointer;
+      background:linear-gradient(90deg, var(--accent), #d6ffd9); color:#00320b; box-shadow:0 8px 22px rgba(123,255,136,.25);
+    }
+    .small{font-size:12px; color:var(--muted)}
+    footer{margin:28px 0; text-align:center; color:var(--muted); font-size:12px}
+    .toast{
+      position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:#0c141f;
+      border:1px solid rgba(69,209,255,.35); color:var(--ink); padding:10px 14px; border-radius:10px;
+      box-shadow:0 10px 30px rgba(0,0,0,.5); display:none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">🏈</div>
+        <div>
+          <div class="title">NFL Scores – Yesterday</div>
+          <div class="small">Guess the winner • tap reveal • vote 🔺🔻</div>
+        </div>
+      </div>
+      <div class="small">Daily email before work • 100% free</div>
+      <div class="ticker">
+        <div class="ticker-track" id="ticker"></div>
+      </div>
+    </header>
+
+    <section class="grid" id="games"></section>
+
+    <form class="email" id="emailForm" action="YOUR_FORMSPREE_ENDPOINT_HERE" method="POST">
+      <input type="email" name="email" placeholder="Get the scores before work — enter your email" required/>
+      <button type="submit">Send me yesterday’s scores</button>
+      <div class="small">No spam. 1 email on game days. Unsubscribe anytime.</div>
+    </form>
+
+    <footer>© <span id="yr"></span> nflscoresyesterday.com • just for fun • not affiliated with the NFL</footer>
+  </div>
+
+  <div class="toast" id="toast">Thanks! Check your inbox for confirmation.</div>
+
+  <script>
+    // ---- demo data for yesterday (swap with API later) ----
+    const demo = {
+      dateLabel: new Date(Date.now()-86400000).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}),
+      games: [
+        {home:"Eagles", away:"Cowboys", homeEmoji:"🦅", awayEmoji:"⭐", homeScore:27, awayScore:24},
+        {home:"Chiefs", away:"Ravens", homeEmoji:"💛", awayEmoji:"🟣", homeScore:31, awayScore:28},
+        {home:"49ers", away:"Seahawks", homeEmoji:"🟥", awayEmoji:"🟦", homeScore:24, awayScore:10},
+        {home:"Jets", away:"Patriots", homeEmoji:"🟢", awayEmoji:"🔵", homeScore:20, awayScore:23},
+      ]
+    };
+
+    // ---- ticker ----
+    const t = document.getElementById('ticker');
+    const chips = demo.games.map(g => `<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ');
+    t.innerHTML = (chips + ' • ' + chips); // loop
+
+    // ---- cards ----
+    const wrap = document.getElementById('games');
+    const y = document.getElementById('yr'); y.textContent = new Date().getFullYear();
+
+    function cardHTML(g, idx){
+      const winner = g.homeScore===g.awayScore ? 'Tie' : (g.homeScore>g.awayScore ? g.home : g.away);
+      return `
+        <article class="card hide" data-idx="${idx}">
+          <div class="badge">Yesterday • ${demo.dateLabel}</div>
+          <div class="teams">
+            <div class="tm"><i>${g.awayEmoji}</i><span>${g.away}</span></div>
+            <div class="small">at</div>
+            <div class="tm"><i>${g.homeEmoji}</i><span>${g.home}</span></div>
+          </div>
+          <div class="score score-val">
+            <div class="score-num">${g.awayScore}</div>
+            <button class="reveal" data-reveal="${idx}">Reveal</button>
+            <div class="score-num">${g.homeScore}</div>
+          </div>
+          <div class="small">Guess the winner → then tap Reveal</div>
+          <div class="vote">
+            <button class="btn up" data-vote="up-${idx}">🔺 Good game</button>
+            <button class="btn down" data-vote="down-${idx}">🔻 Meh</button>
+          </div>
+          <div class="small" id="winner-${idx}" style="opacity:.85; margin-top:2px;">Winner: <b>?</b></div>
+        </article>
+      `;
+    }
+    wrap.innerHTML = demo.games.map(cardHTML).join('');
+
+    // ---- reveal + vote (stored locally to avoid spam) ----
+    const toast = (msg)=>{
+      const el = document.getElementById('toast'); el.textContent = msg; el.style.display='block';
+      setTimeout(()=> el.style.display='none', 2200);
+    };
+
+    document.addEventListener('click', (e)=>{
+      const rev = e.target.closest('[data-reveal]');
+      if(rev){
+        const idx = +rev.dataset.reveal;
+        const card = document.querySelector(`.card[data-idx="${idx}"]`);
+        card.classList.remove('hide');
+        const g = demo.games[idx];
+        const winner = g.homeScore===g.awayScore ? 'Tie' : (g.homeScore>g.awayScore ? g.home : g.away);
+        document.getElementById(`winner-${idx}`).innerHTML = `Winner: <b>${winner}</b>`;
+      }
+      const vote = e.target.closest('[data-vote]');
+      if(vote){
+        const key = 'voted-' + vote.dataset.vote;
+        if(localStorage.getItem(key)){ toast("Already counted ✅"); return; }
+        localStorage.setItem(key, '1');
+        toast("Thanks for the vote!");
+      }
+    });
+
+    // ---- email capture success (Formspree-style) ----
+    const form = document.getElementById('emailForm');
+    form.addEventListener('submit', async (e)=>{
+      if(form.action.includes('YOUR_FORMSPREE_ENDPOINT_HERE')) { e.preventDefault(); alert('Add your form endpoint first. See notes below the code.'); return; }
+    });
+  </script>
+</body>
+</html>
 
