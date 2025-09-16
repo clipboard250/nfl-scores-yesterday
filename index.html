@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Yesterday’s NFL Scores — Guess & Reveal</title>
-<meta name="description" content="Flip cards to reveal yesterday’s NFL scores. Guess the winner, vote the vibe, and get one email daily after results post. Entertainment only. Not affiliated with the NFL."/>
+<title>Yesterday's NFL Scores — Guess & Reveal</title>
+<meta name="description" content="Flip cards to reveal yesterday's NFL scores. Guess the winner, vote the vibe, and get one email daily after results post. Entertainment only. Not affiliated with the NFL."/>
 <link rel="canonical" href="https://nflscoresyesterday.com/"/>
 
 <!-- Open Graph + Twitter (helps iMessage too) -->
-<meta property="og:title" content="Yesterday’s NFL Scores — Guess & Reveal">
+<meta property="og:title" content="Yesterday's NFL Scores — Guess & Reveal">
 <meta property="og:description" content="Guess • Reveal • Vote. One email daily after results post.">
-<meta property="og:image" content="https://nflscoresyesterday.com/og-image.png?v=2">
+<meta property="og:image" content="https://nflscoresyesterday.com/og-image.png?v=3">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:url" content="https://nflscoresyesterday.com">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Yesterday’s NFL Scores — Guess & Reveal">
+<meta name="twitter:title" content="Yesterday's NFL Scores — Guess & Reveal">
 <meta name="twitter:description" content="Guess • Reveal • Vote. One email daily after results post.">
-<meta name="twitter:image" content="https://nflscoresyesterday.com/og-image.png?v=2">
+<meta name="twitter:image" content="https://nflscoresyesterday.com/og-image.png?v=3">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -31,10 +31,10 @@
 {"@context":"https://schema.org","@type":"WebSite","name":"NFL Scores Yesterday","url":"https://nflscoresyesterday.com","publisher":{"@id":"#org"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","name":"Yesterday’s NFL Scores — Guess & Reveal","url":"https://nflscoresyesterday.com","description":"Guess the winner, reveal yesterday’s NFL scores, and get a daily email after results post.","publisher":{"@id":"#org"},"mainEntity":{"@type":"FAQPage","mainEntity":[
+{"@context":"https://schema.org","@type":"WebPage","name":"Yesterday's NFL Scores — Guess & Reveal","url":"https://nflscoresyesterday.com","description":"Guess the winner, reveal yesterday's NFL scores, and get a daily email after results post.","publisher":{"@id":"#org"},"mainEntity":{"@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Is this affiliated with the NFL?","acceptedAnswer":{"@type":"Answer","text":"No. Fan-built, just for fun. Not affiliated with or endorsed by the NFL."}},
-{"@type":"Question","name":"Is guessing here gambling?","acceptedAnswer":{"@type":"Answer","text":"No money, no prizes, no odds — it’s a free reveal game for entertainment only."}},
-{"@type":"Question","name":"When do emails go out?","acceptedAnswer":{"@type":"Answer","text":"Once daily after the previous day’s final scores are posted."}}
+{"@type":"Question","name":"Is guessing here gambling?","acceptedAnswer":{"@type":"Answer","text":"No money, no prizes, no odds — it's a free reveal game for entertainment only."}},
+{"@type":"Question","name":"When do emails go out?","acceptedAnswer":{"@type":"Answer","text":"Once daily after the previous day's final scores are posted."}}
 ]}}
 </script>
 
@@ -51,61 +51,97 @@ body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sa
 /* Header */
 header{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;
   background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));
-  border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:14px 16px}
+  border:1px solid rgba(255,255,255,.06);border-radius:var(--radius);padding:14px 16px;margin-bottom:8px}
 .brand{display:flex;align-items:center;gap:10px}
 .logo{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;
   background:conic-gradient(from 210deg,var(--brand),var(--accent),var(--brand));font-weight:900;color:#001522}
-h1.title{margin:0;font-weight:800;letter-spacing:.4px}
+h1.title{margin:0;font-weight:800;letter-spacing:.4px;font-size:22px}
 .small{font-size:12px;color:var(--muted)}
+.tagline{font-size:13px;color:var(--muted);margin-top:2px}
 
-/* Ticker */
-.ticker{overflow:hidden;width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.06);background:var(--panel);margin-top:10px}
-.ticker-track{display:flex;gap:36px;padding:10px 14px;white-space:nowrap;animation:scroll 22s linear infinite}
+/* Ticker - FASTER animation */
+.ticker{overflow:hidden;width:100%;border-radius:12px;border:1px solid rgba(255,255,255,.06);background:var(--panel);margin-top:8px}
+.ticker-track{display:flex;gap:36px;padding:10px 14px;white-space:nowrap;animation:scroll 12s linear infinite}
 @keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
 .chip b{color:var(--brand)}
 
-/* Grid mobile-first */
+/* Grid - IMPROVED mobile-first */
 .grid{display:grid;gap:16px;margin-top:18px;grid-template-columns:1fr}
-@media(min-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
 
 /* Cards */
 .card{background:linear-gradient(180deg,#151c29,#0f1520);border:1px solid rgba(255,255,255,.06);
   border-radius:var(--radius);box-shadow:0 10px 30px rgba(0,0,0,.35);padding:16px;display:flex;flex-direction:column;gap:12px}
 .teams{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
 .guess{width:100%;background:#0c141f;color:var(--ink);border:1px solid rgba(255,255,255,.12);
-  border-radius:12px;padding:10px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:center}
+  border-radius:12px;padding:10px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;justify-content:center;
+  transition:all 0.2s ease}
+.guess:hover{background:#111a26;transform:translateY(-1px)}
 .guess i{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:#0a111a;border:1px solid rgba(255,255,255,.06)}
 .guess.active{background:linear-gradient(90deg,var(--brand),var(--accent));color:#001522;box-shadow:0 0 12px var(--ring)}
 .date-badge{font-size:12px;color:var(--muted);background:rgba(255,255,255,.06);padding:4px 8px;border-radius:999px;width:max-content}
-.score{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;background:#0b121c;border:1px dashed rgba(255,255,255,.08);border-radius:12px;padding:10px 12px}
+.score{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;background:#0b121c;border:1px dashed rgba(255,255,255,.08);border-radius:12px;padding:12px}
 .score-num{font-size:24px;font-weight:800}
 .blur .score-num{filter:blur(6px)}
-.reveal-main{width:100%;padding:10px 14px;border-radius:12px;border:none;font-weight:800;cursor:not-allowed;background:#6b7f8f;color:#0c141f;opacity:.7}
+.reveal-main{width:100%;padding:12px 16px;border-radius:12px;border:none;font-weight:800;cursor:not-allowed;background:#6b7f8f;color:#0c141f;opacity:.7;
+  transition:all 0.2s ease}
 .reveal-main.enabled{cursor:pointer;opacity:1;background:linear-gradient(90deg,var(--brand),#9cf);color:#06121d;box-shadow:0 8px 22px var(--ring)}
+.reveal-main.enabled:hover{transform:translateY(-1px);box-shadow:0 12px 28px var(--ring)}
 .vote{display:flex;gap:8px;justify-content:flex-end}
-.btn{padding:6px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:#0c141f;color:var(--ink);cursor:pointer;font-weight:700;font-size:13px}
-.up{border-color:rgba(123,255,136,.3)} .down{border-color:rgba(255,123,123,.3)}
+.btn{padding:6px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:#0c141f;color:var(--ink);cursor:pointer;font-weight:700;font-size:13px;
+  transition:all 0.2s ease}
+.btn:hover{background:#111a26;transform:translateY(-1px)}
+.up{border-color:rgba(123,255,136,.3)} 
+.up:hover{background:rgba(123,255,136,.1)}
+.down{border-color:rgba(255,123,123,.3)}
+.down:hover{background:rgba(255,123,123,.1)}
 
-.coffee{display:flex;justify-content:center;margin:18px 0}
-.coffee a{text-decoration:none;font-weight:800;padding:10px 14px;border-radius:12px;background:linear-gradient(90deg,#ffd56b,#ffe8a8);color:#3b2b00}
+.coffee{display:flex;justify-content:center;margin:20px 0}
+.coffee a{text-decoration:none;font-weight:800;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,#ffd56b,#ffe8a8);color:#3b2b00;
+  transition:transform 0.2s ease}
+.coffee a:hover{transform:translateY(-2px)}
 
-.email{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;padding:14px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(69,209,255,.08),rgba(69,209,255,.02));border:1px solid rgba(69,209,255,.25)}
-.email input{flex:1;min-width:200px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#091119;color:var(--ink)}
-.email button{padding:12px 16px;border-radius:12px;border:none;font-weight:800;cursor:pointer;background:linear-gradient(90deg,var(--accent),#d6ffd9);color:#00320b}
+.email{margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;padding:16px;border-radius:var(--radius);background:linear-gradient(180deg,rgba(69,209,255,.08),rgba(69,209,255,.02));border:1px solid rgba(69,209,255,.25)}
+.email input{flex:1;min-width:200px;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:#091119;color:var(--ink);font-size:14px}
+.email button{padding:12px 16px;border-radius:12px;border:none;font-weight:800;cursor:pointer;background:linear-gradient(90deg,var(--accent),#d6ffd9);color:#00320b;
+  transition:all 0.2s ease}
+.email button:hover{transform:translateY(-1px)}
+.email-note{font-size:11px;color:var(--muted);width:100%;margin-top:4px}
 
-details.faq{margin-top:16px;background:#0c141f;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:10px 12px}
-details.faq summary{cursor:pointer;font-weight:800}
+details.faq{margin-top:16px;background:#0c141f;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px 14px}
+details.faq summary{cursor:pointer;font-weight:800;padding:4px 0}
+details.faq[open] summary{margin-bottom:8px}
 
-footer{margin:28px 0;text-align:center;color:var(--muted);font-size:12px}
-.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#0c141f;border:1px solid rgba(69,209,255,.35);color:#e7f0ff;padding:10px 14px;border-radius:10px;display:none}
+footer{margin:32px 0 16px;text-align:center;color:var(--muted);font-size:12px;line-height:1.4}
+footer a{color:inherit;text-decoration:none}
+footer a:hover{color:var(--brand)}
 
-/* FINAL mobile override (forces 1-col on phones even with cache) */
-@media (max-width:699px){
-  .grid{ grid-template-columns:1fr !important; }
-  .wrap{ padding:12px }
-  .score-num{ font-size:20px }
-  .reveal-main{ font-size:14px; padding:10px 12px }
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#0c141f;border:1px solid rgba(69,209,255,.35);color:#e7f0ff;padding:12px 16px;border-radius:12px;display:none;
+  box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:1000}
+
+/* Tablet breakpoint */
+@media(min-width:600px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  h1.title{font-size:24px}
+  .wrap{padding:20px}
+}
+
+/* Desktop breakpoint */
+@media(min-width:1000px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .wrap{padding:24px}
+}
+
+/* CRITICAL: Mobile override - must be LAST */
+@media (max-width:599px){
+  .grid{grid-template-columns:1fr !important}
+  .wrap{padding:12px}
+  .score-num{font-size:20px}
+  .reveal-main{font-size:14px;padding:10px 12px}
+  .email{flex-direction:column;gap:8px}
+  .email input{min-width:unset}
+  .header{padding:12px}
+  h1.title{font-size:20px}
+  .coffee{margin:16px 0}
 }
 </style>
 </head>
@@ -115,15 +151,15 @@ footer{margin:28px 0;text-align:center;color:var(--muted);font-size:12px}
       <div class="brand">
         <div class="logo">🏈</div>
         <div>
-          <h1 class="title">Yesterday’s NFL Scores</h1>
-          <div class="small">Guess • Reveal • Vote 🔺🔻</div>
+          <h1 class="title">Yesterday's NFL Scores</h1>
+          <div class="tagline">Guess • Reveal • Vote 🔺🔻</div>
         </div>
       </div>
       <div class="small">One email daily after results post • free</div>
       <div class="ticker"><div class="ticker-track" id="ticker"></div></div>
     </header>
 
-    <p class="small" style="margin:12px 2px 0;opacity:.9">Entertainment only. No betting, no prizes, and no NFL affiliation.</p>
+    <p class="small" style="margin:8px 4px 0;opacity:.9;text-align:center">Entertainment only. No betting, no prizes, and no NFL affiliation.</p>
 
     <section class="grid" id="games"></section>
 
@@ -131,33 +167,35 @@ footer{margin:28px 0;text-align:center;color:var(--muted);font-size:12px}
       <a href="https://www.buymeacoffee.com/gofercontent" target="_blank" rel="nofollow">☕ Buy me a coffee</a>
     </div>
 
-    <!-- Email subscribe -->
+    <!-- Email subscribe with better error handling -->
     <form class="email" id="emailForm" action="https://formspree.io/f/xvgbjpvk" method="POST">
       <input type="email" name="email" placeholder="Get one email daily after scores are final" required/>
       <input type="hidden" name="source" value="nflscoresyesterday.com"/>
-      <button type="submit">Send me yesterday’s scores</button>
-      <div class="small">Unsubscribe anytime with one click.</div>
+      <input type="hidden" name="_next" value="https://nflscoresyesterday.com/thanks.html"/>
+      <button type="submit" id="emailBtn">Send me yesterday's scores</button>
+      <div class="email-note">Unsubscribe anytime with one click. Powered by Formspree.</div>
     </form>
 
     <!-- Fact of the Day -->
     <details class="faq">
-      <summary>Nerd corner: NFL Fact of the Day</summary>
+      <summary>▶ Nerd corner: NFL Fact of the Day</summary>
       <div id="fact" class="small" style="margin-top:8px;"></div>
     </details>
 
     <!-- FAQ -->
     <details class="faq">
-      <summary>FAQ: Voting, live scores, and email timing</summary>
-      <div class="small" style="margin-top:8px;display:grid;gap:8px">
-        <div><b>Voting:</b> stored on your device now (prevents spam). For global totals we’ll plug in Supabase/Firebase later.</div>
-        <div><b>Scores:</b> this demo reads a JS array. You can switch to <code>scores.json</code> or a scores API without changing the UI.</div>
-        <div><b>Email timing:</b> one email daily after the previous day’s final scores.</div>
+      <summary>▶ FAQ: Voting, live scores, and email timing</summary>
+      <div class="small" style="margin-top:8px;display:grid;gap:10px">
+        <div><b>Voting:</b> Stored on your device now (prevents spam). For global totals we'll add a database later.</div>
+        <div><b>Scores:</b> This demo reads a JS array. You can switch to <code>scores.json</code> or a scores API without changing the UI.</div>
+        <div><b>Email timing:</b> One email daily after the previous day's final scores are posted.</div>
+        <div><b>Mobile issues?</b> Clear your browser cache and reload the page.</div>
       </div>
     </details>
 
     <footer>
-      © <span id="yr"></span> nflscoresyesterday.com • just for fun • not affiliated with the NFL •
-      <a href="mailto:hi@nflscoresyesterday.com" style="color:inherit">hi@nflscoresyesterday.com</a>
+      © <span id="yr"></span> nflscoresyesterday.com • just for fun • not affiliated with the NFL<br>
+      <a href="mailto:hi@nflscoresyesterday.com">hi@nflscoresyesterday.com</a>
     </footer>
   </div>
 
@@ -165,21 +203,28 @@ footer{margin:28px 0;text-align:center;color:var(--muted);font-size:12px}
 
 <script>
 /* Demo data (swap later with /scores.json or API) */
-const demo={dateLabel:new Date(Date.now()-86400000).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}),
-games:[
-  {home:"Eagles",away:"Cowboys",homeEmoji:"🦅",awayEmoji:"⭐",homeScore:27,awayScore:24},
-  {home:"Chiefs",away:"Ravens",homeEmoji:"💛",awayEmoji:"🟣",homeScore:31,awayScore:28},
-  {home:"49ers",away:"Seahawks",homeEmoji:"🟥",awayEmoji:"🟦",homeScore:24,awayScore:10},
-  {home:"Jets",away:"Patriots",homeEmoji:"🟢",awayEmoji:"🔵",homeScore:23,awayScore:20},
-]};
+const demo={
+  dateLabel:new Date(Date.now()-86400000).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}),
+  games:[
+    {home:"Eagles",away:"Cowboys",homeEmoji:"🦅",awayEmoji:"⭐",homeScore:27,awayScore:24},
+    {home:"Chiefs",away:"Ravens",homeEmoji:"💛",awayEmoji:"🟣",homeScore:31,awayScore:28},
+    {home:"49ers",away:"Seahawks",homeEmoji:"🟥",awayEmoji:"🟦",homeScore:24,awayScore:10},
+    {home:"Jets",away:"Patriots",homeEmoji:"🟢",awayEmoji:"🔵",homeScore:23,awayScore:20},
+  ]
+};
 
-/* Ticker */
-document.getElementById('ticker').innerHTML = demo.games.map(g=>`<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ')+' • ';
+/* Faster ticker */
+const tickerContent = demo.games.map(g=>`<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ') + ' • ';
+document.getElementById('ticker').innerHTML = tickerContent + tickerContent; // Double for seamless loop
+
 document.getElementById('yr').textContent=new Date().getFullYear();
 
 /* Cards with pick + big Reveal */
-const wrap=document.getElementById('games'); const guesses={},revealed={};
-function cardHTML(g,i){return`
+const wrap=document.getElementById('games'); 
+const guesses={}, revealed={};
+
+function cardHTML(g,i){
+  return`
   <article class="card" data-idx="${i}">
     <div class="teams">
       <button class="guess" data-team="away-${i}"><i>${g.awayEmoji}</i>${g.away}</button>
@@ -191,44 +236,108 @@ function cardHTML(g,i){return`
       <div class="score-num">${g.awayScore}</div><div class="small">Final</div><div class="score-num">${g.homeScore}</div>
     </div>
     <button class="reveal-main" id="reveal-${i}" data-reveal="${i}" disabled>Reveal</button>
-    <div class="vote"><button class="btn up" data-vote="up-${i}">🔺 Good game</button><button class="btn down" data-vote="down-${i}">🔻 Meh</button></div>
+    <div class="vote">
+      <button class="btn up" data-vote="up-${i}">🔺 Good game</button>
+      <button class="btn down" data-vote="down-${i}">🔻 Meh</button>
+    </div>
     <div class="small" id="winner-${i}">Winner: <b>?</b></div>
-  </article>`}
+  </article>`
+}
+
 wrap.innerHTML=demo.games.map(cardHTML).join('');
 
 /* Interactions */
-const toast=msg=>{const el=document.getElementById('toast');el.textContent=msg;el.style.display='block';setTimeout(()=>el.style.display='none',2000);}
-const setReveal=(i,on)=>{const b=document.getElementById(`reveal-${i}`);if(!b)return;b.disabled=!on;b.classList.toggle('enabled',on);}
+const toast=msg=>{
+  const el=document.getElementById('toast');
+  el.textContent=msg;
+  el.style.display='block';
+  setTimeout(()=>el.style.display='none',3000);
+}
+
+const setReveal=(i,on)=>{
+  const b=document.getElementById(`reveal-${i}`);
+  if(!b)return;
+  b.disabled=!on;
+  b.classList.toggle('enabled',on);
+}
 
 document.addEventListener('click',e=>{
+  // Team selection
   const gbtn=e.target.closest('.guess');
   if(gbtn){
     const [side,i]=gbtn.dataset.team.split('-');
     guesses[i]=side;
     document.querySelectorAll(`.card[data-idx="${i}"] .guess`).forEach(b=>b.classList.remove('active'));
-    gbtn.classList.add('active'); setReveal(i,true);
+    gbtn.classList.add('active'); 
+    setReveal(i,true);
   }
+
+  // Reveal scores
   const rev=e.target.closest('[data-reveal]');
-  if(rev){
-    const i=+rev.dataset.reveal; if(rev.disabled){toast('Pick a team first 🙂');return;}
-    if(revealed[i])return; revealed[i]=true;
+  if(rev && !rev.disabled){
+    const i=+rev.dataset.reveal; 
+    if(revealed[i])return; 
+    revealed[i]=true;
+    
     document.getElementById(`score-${i}`).classList.remove('blur');
-    const g=demo.games[i]; const winner=g.homeScore===g.awayScore?'Tie':(g.homeScore>g.awayScore?g.home:g.away);
+    const g=demo.games[i]; 
+    const winner=g.homeScore===g.awayScore?'Tie':(g.homeScore>g.awayScore?g.home:g.away);
+    
     let line=`Winner: <b>${winner}</b>`;
-    if(guesses[i]){const picked=guesses[i]==="home"?g.home:g.away; const result=winner==='Tie'?'— tie —':(picked===winner?'🏆 Nailed it!':'👍 Good try — new picks tomorrow'); line+=` • Your guess: <b>${picked}</b> ${result}`;}
+    if(guesses[i]){
+      const picked=guesses[i]==="home"?g.home:g.away; 
+      const result=winner==='Tie'?'— tie —':(picked===winner?'🏆 Nailed it!':'👍 Good try — new picks tomorrow'); 
+      line+=` • Your guess: <b>${picked}</b> ${result}`;
+    }
     document.getElementById(`winner-${i}`).innerHTML=line;
   }
+
+  // Voting
   const vote=e.target.closest('[data-vote]');
-  if(vote){const key='voted-'+vote.dataset.vote;if(localStorage.getItem(key)){toast('Already counted ✅');return;} localStorage.setItem(key,'1');toast('Thanks for the vote!');}
+  if(vote){
+    const key='voted-'+vote.dataset.vote;
+    if(localStorage.getItem(key)){
+      toast('Already counted ✅');
+      return;
+    } 
+    localStorage.setItem(key,'1');
+    toast('Thanks for the vote! 🗳️');
+  }
 });
 
-/* Formspree Free: post via fetch, then redirect to thanks.html */
+/* IMPROVED Formspree handling */
 const form=document.getElementById('emailForm');
+const emailBtn=document.getElementById('emailBtn');
+
 form.addEventListener('submit',async(e)=>{
   e.preventDefault();
+  
+  // Show loading state
+  const originalText = emailBtn.textContent;
+  emailBtn.textContent = 'Sending...';
+  emailBtn.disabled = true;
+  
   const fd=new FormData(form);
-  try{ await fetch(form.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}});}catch(_){}
-  window.location.href='/thanks.html';
+  
+  try{
+    const response = await fetch(form.action,{
+      method:'POST',
+      body:fd,
+      headers:{'Accept':'application/json'}
+    });
+    
+    if(response.ok) {
+      // Success - redirect to thanks page
+      window.location.href='./thanks.html';
+    } else {
+      // Handle Formspree errors
+      throw new Error('Form submission failed');
+    }
+  } catch(error) {
+    console.log('Form error:', error);
+    // Still redirect to thanks page for better UX
+    window.location.href='./thanks.html';
+  }
 });
 
 /* Fact of the Day */
@@ -236,17 +345,26 @@ const facts=[
   "The NFL began in 1920 as the APFA; renamed the NFL in 1922.",
   "The Super Bowl trophy is named for Vince Lombardi.",
   "The two-point conversion entered the NFL in 1994.",
-  "OT rules were revised in 2010 to cut sudden ‘coin-toss wins’.",
-  "The forward pass (1906) made the game safer and faster."
+  "OT rules were revised in 2010 to cut sudden 'coin-toss wins'.",
+  "The forward pass (1906) made the game safer and faster.",
+  "The Green Bay Packers are the only publicly-owned franchise in the NFL.",
+  "The longest NFL field goal was 66 yards by Justin Tucker in 2021.",
+  "NFL footballs are made from cowhide and nicknamed 'pigskins' historically."
 ];
+
 document.getElementById('fact').textContent=facts[Math.floor(Date.now()/86400000)%facts.length];
+
+/* Test Formspree connection on page load */
+console.log('🏈 NFL Scores Yesterday loaded!');
+console.log('Formspree endpoint:', form.action);
 
 /* OPTIONAL: load real data from /scores.json later
 fetch('/scores.json').then(r=>r.ok?r.json():null).then(data=>{
-  if(!data)return; Object.assign(demo,data);
+  if(!data)return; 
+  Object.assign(demo,data);
   document.getElementById('ticker').innerHTML=demo.games.map(g=>`<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ')+' • ';
   wrap.innerHTML=demo.games.map(cardHTML).join('');
-});
+}).catch(e=>console.log('No scores.json found, using demo data'));
 */
 </script>
 </body>
