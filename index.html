@@ -1,87 +1,151 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>NFL Scores – Yesterday (Guess & Reveal)</title>
-  <meta name="description" content="Flip cards to reveal yesterday’s NFL scores. Guess who won, vote the games, and get a quick daily email. Entertainment only. Not affiliated with the NFL."/>
-  
-  <!-- Open Graph for sharing -->
-  <meta property="og:title" content="NFL Scores – Yesterday (Guess & Reveal)" />
-  <meta property="og:description" content="Guess the winner, reveal yesterday’s NFL scores, and get a quick daily email." />
-  <meta property="og:image" content="https://nflscoresyesterday.com/og-image.png" />
-  <meta property="og:url" content="https://nflscoresyesterday.com" />
-  <meta property="og:type" content="website" />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>NFL Scores – Yesterday (Guess & Reveal)</title>
+<meta name="description" content="Flip cards to reveal yesterday’s NFL scores. Guess who won, vote the vibe, and get one email daily after results post. Entertainment only. Not affiliated with the NFL."/>
 
-  <style>
-    :root{
-      --bg:#0b0f14; --panel:#121822; --card:#141c28; --ink:#e7f0ff; --muted:#9bb1cc;
-      --brand:#45d1ff; --accent:#7bff88; --ring:rgba(69,209,255,.35);
-      --radius:18px;
-    }
-    *{box-sizing:border-box} html,body{height:100%}
-    body{
-      margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 70% -10%, #112033 0%, var(--bg) 60%) no-repeat var(--bg);
-      color:var(--ink);
-    }
-    .wrap{max-width:1100px; margin:0 auto; padding:16px}
+<!-- Open Graph -->
+<meta property="og:title" content="NFL Scores – Yesterday (Guess & Reveal)">
+<meta property="og:description" content="Guess the winner, Reveal the score, Vote the vibe. One email daily after results post.">
+<meta property="og:image" content="https://nflscoresyesterday.com/og-image.png">
+<meta property="og:url" content="https://nflscoresyesterday.com">
+<meta property="og:type" content="website">
 
-    header{
-      display:flex; flex-direction:column; gap:10px; align-items:flex-start;
-      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
-      border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:14px 16px;
-    }
-    @media(min-width:700px){header{flex-direction:row; justify-content:space-between; align-items:center;}}
-    .brand{display:flex; align-items:center; gap:10px}
-    .logo{width:38px; height:38px; border-radius:12px; display:grid; place-items:center;
-      background:conic-gradient(from 210deg, var(--brand), var(--accent), var(--brand)); font-weight:900; color:#001522;}
-    .title{font-weight:800; letter-spacing:.4px}
-    .small{font-size:12px; color:var(--muted)}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-    .ticker{overflow:hidden; width:100%; border-radius:12px; border:1px solid rgba(255,255,255,.06); background:var(--panel); margin-top:8px;}
-    .ticker-track{display:flex; gap:36px; padding:10px; white-space:nowrap; animation:scroll 22s linear infinite;}
-    @keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
-    .chip b{color:var(--brand)}
+<!-- ====== JSON-LD Schema ====== -->
+<script type="application/ld+json" id="org">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "#org",
+  "name": "NFL Scores Yesterday",
+  "url": "https://nflscoresyesterday.com",
+  "logo": "https://nflscoresyesterday.com/og-image.png",
+  "email": "hi@nflscoresyesterday.com",
+  "sameAs": ["https://www.buymeacoffee.com/gofercontent"]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "NFL Scores Yesterday",
+  "url": "https://nflscoresyesterday.com",
+  "publisher": {"@id": "#org"}
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "NFL Scores – Yesterday (Guess & Reveal)",
+  "url": "https://nflscoresyesterday.com",
+  "description": "Guess the winner, reveal yesterday’s NFL scores, and get a daily email after results post.",
+  "publisher": {"@id":"#org"},
+  "mainEntity": {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"Is this affiliated with the NFL?","acceptedAnswer":{"@type":"Answer","text":"No. Fan-built, just for fun. Not affiliated with or endorsed by the NFL."}},
+      {"@type":"Question","name":"Is guessing here gambling?","acceptedAnswer":{"@type":"Answer","text":"No. There are no wagers, prizes, or paid entries. It’s a free guessing game for entertainment only."}},
+      {"@type":"Question","name":"When do emails go out?","acceptedAnswer":{"@type":"Answer","text":"Once daily after final scores are posted for the previous day’s games. Unsubscribe anytime."}}
+    ]
+  }
+}
+</script>
 
-    .grid{display:grid; gap:16px; margin-top:18px; grid-template-columns:1fr;}
-    @media(min-width:700px){ .grid{grid-template-columns:repeat(2,1fr);} }
-    @media(min-width:1024px){ .grid{grid-template-columns:repeat(3,1fr);} }
+<style>
+  :root{
+    --bg:#0b0f14; --panel:#121822; --card:#141c28; --ink:#e7f0ff; --muted:#9bb1cc;
+    --brand:#45d1ff; --accent:#7bff88; --ring:rgba(69,209,255,.35);
+    --radius:18px;
+  }
+  *{box-sizing:border-box} html,body{height:100%}
+  body{
+    margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: radial-gradient(1200px 600px at 70% -10%, #112033 0%, var(--bg) 60%) no-repeat var(--bg);
+    color:var(--ink);
+  }
+  .wrap{max-width:1100px; margin:0 auto; padding:16px}
 
-    .card{background:linear-gradient(180deg,#151c29,#0f1520); border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); 
-      box-shadow:0 10px 30px rgba(0,0,0,.35); padding:16px; display:flex; flex-direction:column; gap:12px;}
-    .teams{display:flex; justify-content:space-between; align-items:center; gap:8px}
-    .tm{display:flex; align-items:center; gap:10px; font-weight:700}
-    .tm i{width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:#0a111a; border:1px solid rgba(255,255,255,.06)}
-    .date-badge{font-size:12px; color:var(--muted); background:rgba(255,255,255,.06); padding:4px 8px; border-radius:999px; width:max-content;}
+  /* HEADER (original layout, uncluttered) */
+  header{
+    display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    border:1px solid rgba(255,255,255,.06); border-radius:var(--radius); padding:14px 16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .brand{display:flex; align-items:center; gap:10px}
+  .logo{
+    width:38px; height:38px; border-radius:12px; display:grid; place-items:center;
+    background:conic-gradient(from 210deg, var(--brand), var(--accent), var(--brand));
+    box-shadow:0 6px 18px rgba(69,209,255,.35);
+    font-weight:900; color:#001522;
+  }
+  .title{font-weight:800; letter-spacing:.4px}
+  .small{font-size:12px; color:var(--muted)}
 
-    .score{display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center;
-      background:#0b121c; border:1px dashed rgba(255,255,255,.08); border-radius:12px; padding:10px 12px;}
-    .score-num{font-size:24px; font-weight:800}
-    .blur .score-num{filter:blur(6px)}
+  /* ticker */
+  .ticker{overflow:hidden; width:100%; border-radius:12px; border:1px solid rgba(255,255,255,.06); background:var(--panel); margin-top:10px;}
+  .ticker-track{display:flex; gap:36px; padding:10px 14px; white-space:nowrap; animation:scroll 22s linear infinite;}
+  @keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)}}
+  .chip b{color:var(--brand)}
 
-    .reveal{margin-top:8px; cursor:pointer; font-weight:700; border:none; border-radius:10px; padding:10px 12px;
-      background:linear-gradient(90deg, var(--brand), #9cf); color:#06121d; box-shadow:0 8px 22px var(--ring);}
-    
-    .vote{display:flex; gap:8px; justify-content:flex-end}
-    .btn{padding:6px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.08); background:#0c141f; color:var(--ink); cursor:pointer; font-weight:700; font-size:13px;}
-    .up{border-color:rgba(123,255,136,.3)} .down{border-color:rgba(255,123,123,.3)}
+  /* GRID: mobile-first */
+  .grid{display:grid; gap:16px; margin-top:18px; grid-template-columns:1fr;}
+  @media(min-width:700px){ .grid{grid-template-columns:repeat(2,1fr);} }
+  @media(min-width:1024px){ .grid{grid-template-columns:repeat(3,1fr);} }
 
-    .email{margin-top:22px; display:flex; gap:10px; flex-wrap:wrap; padding:14px; border-radius:var(--radius);
-      background:linear-gradient(180deg, rgba(69,209,255,.08), rgba(69,209,255,.02)); border:1px solid rgba(69,209,255,.25);}
-    .email input{flex:1; min-width:200px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#091119; color:var(--ink);}
-    .email button{padding:12px 16px; border-radius:12px; border:none; font-weight:800; cursor:pointer; background:linear-gradient(90deg, var(--accent), #d6ffd9); color:#00320b;}
+  /* CARDS */
+  .card{
+    background:linear-gradient(180deg,#151c29,#0f1520);
+    border:1px solid rgba(255,255,255,.06); border-radius:var(--radius);
+    box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+    padding:16px; display:flex; flex-direction:column; gap:12px;
+  }
+  .teams{display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center}
+  .guess{
+    width:100%; background:#0c141f; color:var(--ink);
+    border:1px solid rgba(255,255,255,.12); border-radius:12px; padding:10px;
+    font-weight:700; cursor:pointer; display:flex; align-items:center; gap:8px; justify-content:center;
+  }
+  .guess i{width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:#0a111a; border:1px solid rgba(255,255,255,.06)}
+  .guess.active{background:linear-gradient(90deg, var(--brand), var(--accent)); color:#001522; box-shadow:0 0 12px var(--ring);}
 
-    .coffee{display:flex; justify-content:center; margin:18px 0;}
-    .coffee a{text-decoration:none; font-weight:800; padding:10px 14px; border-radius:12px;
-      background:linear-gradient(90deg,#ffd56b,#ffe8a8); color:#3b2b00;}
+  .date-badge{font-size:12px; color:var(--muted); background:rgba(255,255,255,.06); padding:4px 8px; border-radius:999px; width:max-content;}
 
-    footer{margin:28px 0; text-align:center; color:var(--muted); font-size:12px}
-    .toast{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:#0c141f; border:1px solid rgba(69,209,255,.35); color:var(--ink); padding:10px 14px; border-radius:10px; display:none;}
-  </style>
+  .score{display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center;
+    background:#0b121c; border:1px dashed rgba(255,255,255,.08); border-radius:12px; padding:10px 12px;}
+  .score-num{font-size:24px; font-weight:800}
+  .blur .score-num{filter:blur(6px)}
+
+  .reveal-main{width:100%; padding:10px 14px; border-radius:12px; border:none; font-weight:800; cursor:not-allowed;
+    background:#6b7f8f; color:#0c141f; opacity:.7;}
+  .reveal-main.enabled{cursor:pointer; opacity:1; background:linear-gradient(90deg, var(--brand), #9cf); color:#06121d; box-shadow:0 8px 22px var(--ring);}
+
+  .vote{display:flex; gap:8px; justify-content:flex-end}
+  .btn{padding:6px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.08); background:#0c141f; color:var(--ink); cursor:pointer; font-weight:700; font-size:13px;}
+  .up{border-color:rgba(123,255,136,.3)} .down{border-color:rgba(255,123,123,.3)}
+
+  .coffee{display:flex; justify-content:center; margin:18px 0;}
+  .coffee a{text-decoration:none; font-weight:800; padding:10px 14px; border-radius:12px;
+    background:linear-gradient(90deg,#ffd56b,#ffe8a8); color:#3b2b00;}
+
+  .email{margin-top:22px; display:flex; gap:10px; flex-wrap:wrap; padding:14px; border-radius:var(--radius);
+    background:linear-gradient(180deg, rgba(69,209,255,.08), rgba(69,209,255,.02)); border:1px solid rgba(69,209,255,.25);}
+  .email input{flex:1; min-width:200px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#091119; color:var(--ink);}
+  .email button{padding:12px 16px; border-radius:12px; border:none; font-weight:800; cursor:pointer;
+    background:linear-gradient(90deg, var(--accent), #d6ffd9); color:#00320b;}
+
+  details.faq{margin-top:16px; background:#0c141f; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:10px 12px;}
+  details.faq summary{cursor:pointer; font-weight:800}
+
+  footer{margin:28px 0; text-align:center; color:var(--muted); font-size:12px}
+  .toast{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:#0c141f; border:1px solid rgba(69,209,255,.35); color:var(--ink); padding:10px 14px; border-radius:10px; display:none;}
+</style>
 </head>
 <body>
   <div class="wrap">
@@ -93,7 +157,7 @@
           <div class="small">Guess • Reveal • Vote 🔺🔻</div>
         </div>
       </div>
-      <div class="small">Daily email before work • 100% free</div>
+      <div class="small">One email daily after results post • free</div>
       <div class="ticker"><div class="ticker-track" id="ticker"></div></div>
     </header>
 
@@ -105,12 +169,29 @@
       <a href="https://www.buymeacoffee.com/gofercontent" target="_blank" rel="nofollow">☕ Buy me a coffee</a>
     </div>
 
+    <!-- Email subscribe -->
     <form class="email" id="emailForm" action="https://formspree.io/f/xvgbjpvk" method="POST">
-      <input type="email" name="email" placeholder="Get the scores before work — enter your email" required/>
+      <input type="email" name="email" placeholder="Get one email daily after scores are final" required/>
       <input type="hidden" name="source" value="nflscoresyesterday.com"/>
       <button type="submit">Send me yesterday’s scores</button>
-      <div class="small">No spam. 1 email on game days. Unsubscribe anytime.</div>
+      <div class="small">Unsubscribe anytime with one click.</div>
     </form>
+
+    <!-- Fact of the Day -->
+    <details class="faq">
+      <summary>Nerd corner: NFL Fact of the Day</summary>
+      <div id="fact" class="small" style="margin-top:8px;"></div>
+    </details>
+
+    <!-- Real FAQ -->
+    <details class="faq">
+      <summary>FAQ: How voting works, live scores, and email timing</summary>
+      <div class="small" style="margin-top:8px; display:grid; gap:8px;">
+        <div><b>Voting:</b> right now votes are stored on your device only (local storage) so people can’t spam the buttons. To make votes visible to everyone, plug this into a tiny backend like Supabase/Firestore (notes below).</div>
+        <div><b>Scores:</b> this demo renders from a JavaScript array. You can switch to a simple JSON file (<code>scores.json</code>) or a scores API (see starter snippet in the code).</div>
+        <div><b>Email timing:</b> one email goes out daily after final scores are posted for the previous day’s games.</div>
+      </div>
+    </details>
 
     <footer>
       © <span id="yr"></span> nflscoresyesterday.com • just for fun • not affiliated with the NFL •
@@ -121,58 +202,133 @@
   <div class="toast" id="toast">Thanks! Check your inbox for confirmation.</div>
 
 <script>
-const demo={dateLabel:new Date(Date.now()-86400000).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}),
-games:[
-  {home:"Eagles",away:"Cowboys",homeEmoji:"🦅",awayEmoji:"⭐",homeScore:27,awayScore:24},
-  {home:"Chiefs",away:"Ravens",homeEmoji:"💛",awayEmoji:"🟣",homeScore:31,awayScore:28},
-  {home:"49ers",away:"Seahawks",homeEmoji:"🟥",awayEmoji:"🟦",homeScore:24,awayScore:10},
-  {home:"Jets",away:"Patriots",homeEmoji:"🟢",awayEmoji:"🔵",homeScore:23,awayScore:20},
-]};
+/* ------------------ demo data; API/JSON hook below ------------------ */
+const demo = {
+  dateLabel: new Date(Date.now()-86400000)
+    .toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}),
+  games: [
+    {home:"Eagles",  away:"Cowboys",  homeEmoji:"🦅", awayEmoji:"⭐", homeScore:27, awayScore:24},
+    {home:"Chiefs",  away:"Ravens",   homeEmoji:"💛", awayEmoji:"🟣", homeScore:31, awayScore:28},
+    {home:"49ers",   away:"Seahawks", homeEmoji:"🟥", awayEmoji:"🟦", homeScore:24, awayScore:10},
+    {home:"Jets",    away:"Patriots", homeEmoji:"🟢", awayEmoji:"🔵", homeScore:23, awayScore:20}
+  ]
+};
 
-document.getElementById('ticker').innerHTML=demo.games.map(g=>`<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ')+' • ';
-document.getElementById('yr').textContent=new Date().getFullYear();
+/* ----------- Ticker ----------- */
+document.getElementById('ticker').innerHTML =
+  demo.games.map(g=>`<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ') + ' • ';
 
-const wrap=document.getElementById('games');
-function cardHTML(g,idx){return`
-  <article class="card" data-idx="${idx}">
-    <div class="teams">
-      <div class="tm"><i>${g.awayEmoji}</i>${g.away}</div>
-      <div class="small">at</div>
-      <div class="tm"><i>${g.homeEmoji}</i>${g.home}</div>
-    </div>
-    <div class="date-badge">Yesterday • ${demo.dateLabel}</div>
-    <div class="score blur" id="score-${idx}">
-      <div class="score-num">${g.awayScore}</div>
-      <div class="small">Final</div>
-      <div class="score-num">${g.homeScore}</div>
-    </div>
-    <button class="reveal" data-reveal="${idx}">Reveal</button>
-    <div class="vote"><button class="btn up" data-vote="up-${idx}">🔺 Good game</button><button class="btn down" data-vote="down-${idx}">🔻 Meh</button></div>
-    <div class="small" id="winner-${idx}">Winner: <b>?</b></div>
-  </article>`;}
-wrap.innerHTML=demo.games.map(cardHTML).join('');
+/* ----------- Build cards (with pick-a-winner + big Reveal) ----------- */
+document.getElementById('yr').textContent = new Date().getFullYear();
+const wrap = document.getElementById('games');
+const guesses = {}, revealed = {};
 
-const toast=msg=>{const el=document.getElementById('toast');el.textContent=msg;el.style.display='block';setTimeout(()=>el.style.display='none',2000);};
+function cardHTML(g, idx){
+  return `
+    <article class="card" data-idx="${idx}">
+      <div class="teams">
+        <button class="guess" data-team="away-${idx}"><i>${g.awayEmoji}</i>${g.away}</button>
+        <div class="small">at</div>
+        <button class="guess" data-team="home-${idx}"><i>${g.homeEmoji}</i>${g.home}</button>
+      </div>
 
-document.addEventListener('click',e=>{
-  const rev=e.target.closest('[data-reveal]');
-  if(rev){
-    const idx=+rev.dataset.reveal;
-    document.getElementById(`score-${idx}`).classList.remove('blur');
-    const g=demo.games[idx];
-    const winner=g.homeScore===g.awayScore?'Tie':(g.homeScore>g.awayScore?g.home:g.away);
-    document.getElementById(`winner-${idx}`).innerHTML=`Winner: <b>${winner}</b>`;
+      <div class="date-badge">Yesterday • ${demo.dateLabel}</div>
+
+      <div class="score blur" id="score-${idx}">
+        <div class="score-num">${g.awayScore}</div>
+        <div class="small">Final</div>
+        <div class="score-num">${g.homeScore}</div>
+      </div>
+
+      <button class="reveal-main" id="reveal-${idx}" data-reveal="${idx}" disabled>Reveal</button>
+
+      <div class="vote">
+        <button class="btn up" data-vote="up-${idx}">🔺 Good game</button>
+        <button class="btn down" data-vote="down-${idx}">🔻 Meh</button>
+      </div>
+
+      <div class="small" id="winner-${idx}">Winner: <b>?</b></div>
+    </article>`;
+}
+wrap.innerHTML = demo.games.map(cardHTML).join('');
+
+/* ----------- Interactions ----------- */
+const toast = msg => { const el = document.getElementById('toast'); el.textContent = msg; el.style.display='block'; setTimeout(()=> el.style.display='none', 2000); };
+const setReveal = (idx,on)=>{const b=document.getElementById(`reveal-${idx}`); if(!b) return; b.disabled=!on; b.classList.toggle('enabled', on);};
+
+document.addEventListener('click', (e)=>{
+  // Guess choose
+  const gbtn = e.target.closest('.guess');
+  if(gbtn){
+    const [side, idx] = gbtn.dataset.team.split('-');
+    guesses[idx] = side;
+    document.querySelectorAll(`.card[data-idx="${idx}"] .guess`).forEach(b=>b.classList.remove('active'));
+    gbtn.classList.add('active');
+    setReveal(idx, true);
   }
-  const vote=e.target.closest('[data-vote]');
+
+  // Reveal
+  const rev = e.target.closest('[data-reveal]');
+  if(rev){
+    const idx = +rev.dataset.reveal;
+    if(rev.disabled) { toast('Pick a team first 🙂'); return; }
+    if(revealed[idx]) return; revealed[idx] = true;
+
+    document.getElementById(`score-${idx}`).classList.remove('blur');
+
+    const g = demo.games[idx];
+    const winner = g.homeScore===g.awayScore ? 'Tie' : (g.homeScore>g.awayScore ? g.home : g.away);
+    document.getElementById(`winner-${idx}`).innerHTML = `Winner: <b>${winner}</b>`;
+
+    // show correct/wrong
+    if(guesses[idx]){
+      const picked = guesses[idx]==="home"?g.home:g.away;
+      const result = winner==='Tie' ? '— tie —' : (picked===winner ? "✅ Correct!" : "❌ Wrong");
+      document.getElementById(`winner-${idx}`).innerHTML += ` • Your guess: <b>${picked}</b> ${result}`;
+    }
+  }
+
+  // Votes (local only for now)
+  const vote = e.target.closest('[data-vote]');
   if(vote){
-    const key='voted-'+vote.dataset.vote;
-    if(localStorage.getItem(key)){toast("Already counted ✅");return;}
-    localStorage.setItem(key,'1');toast("Thanks for the vote!");
+    const key = 'voted-' + vote.dataset.vote;
+    if(localStorage.getItem(key)){ toast("Already counted ✅"); return; }
+    localStorage.setItem(key,'1');
+    toast("Thanks for the vote!");
   }
 });
 
-// form feedback
-document.getElementById('emailForm').addEventListener('submit',()=>{setTimeout(()=>{toast("Thanks! Check your inbox")},200);});
+/* ----------- Email submit feedback ----------- */
+document.getElementById('emailForm').addEventListener('submit', ()=>{
+  setTimeout(()=>{ toast("Thanks! Check your inbox") }, 200);
+});
+
+/* ----------- NFL Fact of the Day (rotates by day) ----------- */
+const facts = [
+  "The NFL was founded in 1920 as the American Professional Football Association; it took the name 'National Football League' in 1922.",
+  "The Super Bowl trophy is named for Vince Lombardi, who led the Packers to victories in the first two Super Bowls.",
+  "The two-point conversion was adopted by the NFL in 1994.",
+  "Overtime rules changed in 2010 to reduce the chance a coin-toss alone decides the game.",
+  "The forward pass was legalized in 1906 to make football safer and more open."
+];
+const dayIndex = Math.floor(Date.now() / 86400000) % facts.length;
+document.getElementById('fact').textContent = facts[dayIndex];
+
+/* ----------- OPTIONAL: load from /scores.json if present ----------- */
+/* 
+// Put a file scores.json at your site root shaped like:
+// {"dateLabel":"Sep 15, 2025","games":[{"home":"Eagles","away":"Cowboys","homeEmoji":"🦅","awayEmoji":"⭐","homeScore":27,"awayScore":24}, ... ]}
+// Then uncomment this to replace demo with live data.
+
+fetch('/scores.json').then(r => r.ok ? r.json() : null).then(data=>{
+  if(!data) return;
+  Object.assign(demo, data);
+  // rebuild UI with real data:
+  document.getElementById('ticker').innerHTML =
+    demo.games.map(g=>`<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ') + ' • ';
+  wrap.innerHTML = demo.games.map(cardHTML).join('');
+});
+*/
 </script>
 </body>
 </html>
