@@ -10,15 +10,22 @@
 <!-- Open Graph + Twitter (helps iMessage too) -->
 <meta property="og:title" content="Yesterday's NFL Scores — Guess & Reveal">
 <meta property="og:description" content="Guess • Reveal • Vote. One email daily after results post.">
-<meta property="og:image" content="https://nflscoresyesterday.com/og-image.png?v=3">
+<meta property="og:image" content="https://nflscoresyesterday.com/og-image.png?v=4">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
 <meta property="og:url" content="https://nflscoresyesterday.com">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="NFL Scores Yesterday">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Yesterday's NFL Scores — Guess & Reveal">
 <meta name="twitter:description" content="Guess • Reveal • Vote. One email daily after results post.">
-<meta name="twitter:image" content="https://nflscoresyesterday.com/og-image.png?v=3">
+<meta name="twitter:image" content="https://nflscoresyesterday.com/og-image.png?v=4">
+<meta name="twitter:site" content="@nflscores">
+
+<!-- Alternative fallback image -->
+<meta property="og:image" content="https://nflscoresyesterday.com/fallback-og.png">
+<meta name="twitter:image" content="https://nflscoresyesterday.com/fallback-og.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
@@ -141,6 +148,22 @@ footer a:hover{color:var(--brand)}
   .grid{
     grid-template-columns:1fr !important;
     display:grid !important;
+    gap:12px !important;
+  }
+  .card{
+    margin:0 !important;
+    padding:12px !important;
+  }
+  .teams{
+    gap:6px !important;
+  }
+  .guess{
+    padding:8px !important;
+    font-size:13px !important;
+  }
+  .guess i{
+    width:24px !important;
+    height:24px !important;
   }
 }
 
@@ -148,15 +171,20 @@ footer a:hover{color:var(--brand)}
   .grid{
     grid-template-columns:1fr !important;
     display:grid !important;
+    gap:10px !important;
   }
-  .wrap{padding:12px}
-  .score-num{font-size:20px}
-  .reveal-main{font-size:14px;padding:10px 12px}
+  .wrap{padding:10px !important}
+  .score-num{font-size:18px !important}
+  .reveal-main{font-size:13px !important;padding:8px 10px !important}
   .email{flex-direction:column;gap:8px}
-  .email input{min-width:unset}
-  .header{padding:12px}
-  h1.title{font-size:20px}
-  .coffee{margin:16px 0}
+  .email input{min-width:unset;font-size:14px !important}
+  .header{padding:10px !important}
+  h1.title{font-size:18px !important}
+  .coffee{margin:12px 0 !important}
+  .card{padding:10px !important}
+  .teams{gap:4px !important}
+  .guess{padding:6px !important;font-size:12px !important}
+  .btn{padding:4px 8px !important;font-size:11px !important}
 }
 
 /* EVEN MORE AGGRESSIVE - iPhone specific */
@@ -167,7 +195,8 @@ footer a:hover{color:var(--brand)}
   }
   .grid .card{
     width:100% !important;
-    margin-bottom:16px !important;
+    margin-bottom:12px !important;
+    display:block !important;
   }
 }
 </style>
