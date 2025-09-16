@@ -21,7 +21,6 @@
   }
   .wrap{max-width:1100px; margin:0 auto; padding:22px}
 
-  /* Header */
   header{
     display:flex; gap:14px; align-items:center; justify-content:space-between; flex-wrap:wrap;
     background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
@@ -38,17 +37,12 @@
   .title{font-weight:800; letter-spacing:.4px}
   .small{font-size:12px; color:var(--muted)}
 
-  /* Ticker */
-  .ticker{
-    position:relative; overflow:hidden; width:100%; border-radius:12px;
-    border:1px solid rgba(255,255,255,.06); background:var(--panel); margin-top:10px;
-  }
+  .ticker{position:relative; overflow:hidden; width:100%; border-radius:12px; border:1px solid rgba(255,255,255,.06); background:var(--panel); margin-top:10px;}
   .ticker-track{display:flex; gap:32px; padding:8px 12px; white-space:nowrap; animation:scroll 20s linear infinite;}
   @keyframes scroll{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
   .chip{color:var(--ink); font-weight:600}
   .chip b{color:var(--brand)}
 
-  /* Grid + Cards */
   .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:16px; margin-top:18px;}
   .card{
     background:linear-gradient(180deg,#151c29,#0f1520);
@@ -56,9 +50,7 @@
     box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
     padding:16px; display:flex; flex-direction:column; gap:12px;
   }
-  .row{display:flex; align-items:center; gap:10px; justify-content:space-between}
 
-  /* Guess buttons */
   .teams{display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:8px}
   .guess{
     width:100%; background:#0c141f; color:var(--ink);
@@ -66,12 +58,8 @@
     font-weight:700; cursor:pointer; display:flex; align-items:center; gap:8px; justify-content:center;
   }
   .guess i{width:28px; height:28px; border-radius:8px; display:grid; place-items:center; background:#0a111a; border:1px solid rgba(255,255,255,.06)}
-  .guess.active{
-    background:linear-gradient(90deg, var(--brand), var(--accent));
-    color:#001522; box-shadow:0 0 12px var(--ring);
-  }
+  .guess.active{background:linear-gradient(90deg, var(--brand), var(--accent)); color:#001522; box-shadow:0 0 12px var(--ring);}
 
-  /* Date row sits alone to avoid overlap */
   .date-badge{
     align-self:start; font-size:12px; color:var(--muted);
     background:rgba(255,255,255,.06); padding:6px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.08);
@@ -82,40 +70,34 @@
     display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center;
     background:#0b121c; border:1px dashed rgba(255,255,255,.08); border-radius:12px; padding:10px 12px;
   }
-  .reveal{cursor:pointer; font-weight:700; border:none; border-radius:10px; padding:10px 12px;
-    background:linear-gradient(90deg, var(--brand), #9cf); color:#06121d; box-shadow:0 8px 22px var(--ring);}
   .score-num{font-size:26px; font-weight:800}
-  .hide .score-val{filter:blur(10px)} .hide .score-num{filter:blur(6px)}
+  .blur .score-num{filter:blur(6px)}
+
+  /* BIG reveal below the score, disabled until a guess is picked */
+  .reveal-main{
+    width:100%; padding:12px 16px; border-radius:12px; border:none; font-weight:800; cursor:not-allowed;
+    background:linear-gradient(90deg, #6b7f8f, #93a5b1); color:#0c141f; opacity:.7;
+  }
+  .reveal-main.enabled{
+    cursor:pointer; opacity:1; background:linear-gradient(90deg, var(--accent), #d6ffd9); color:#00320b;
+    box-shadow:0 8px 22px rgba(123,255,136,.25);
+  }
 
   .vote{display:flex; gap:8px; align-items:center; justify-content:flex-end}
-  .btn{
-    padding:8px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.08);
-    background:#0c141f; color:var(--ink); cursor:pointer; font-weight:700;
-  }
+  .btn{padding:8px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.08); background:#0c141f; color:var(--ink); cursor:pointer; font-weight:700;}
   .btn:hover{transform:translateY(-1px)}
   .up{border-color:rgba(123,255,136,.3)} .down{border-color:rgba(255,123,123,.3)}
 
-  /* Email bar */
-  .email{
-    margin-top:22px; display:flex; gap:10px; flex-wrap:wrap; padding:14px; border-radius:var(--radius);
-    background:linear-gradient(180deg, rgba(69,209,255,.08), rgba(69,209,255,.02));
-    border:1px solid rgba(69,209,255,.25);
-  }
-  .email input{
-    flex:1; min-width:240px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
-    background:#091119; color:var(--ink); outline:none;
-  }
-  .email button{
-    padding:12px 16px; border-radius:12px; border:none; font-weight:800; cursor:pointer;
-    background:linear-gradient(90deg, var(--accent), #d6ffd9); color:#00320b; box-shadow:0 8px 22px rgba(123,255,136,.25);
-  }
+  .email{margin-top:22px; display:flex; gap:10px; flex-wrap:wrap; padding:14px; border-radius:var(--radius);
+    background:linear-gradient(180deg, rgba(69,209,255,.08), rgba(69,209,255,.02)); border:1px solid rgba(69,209,255,.25);}
+  .email input{flex:1; min-width:240px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#091119; color:var(--ink); outline:none;}
+  .email button{padding:12px 16px; border-radius:12px; border:none; font-weight:800; cursor:pointer;
+    background:linear-gradient(90deg, var(--accent), #d6ffd9); color:#00320b; box-shadow:0 8px 22px rgba(123,255,136,.25);}
 
   footer{margin:28px 0; text-align:center; color:var(--muted); font-size:12px}
-  .toast{
-    position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:#0c141f;
+  .toast{position:fixed; left:50%; bottom:20px; transform:translateX(-50%); background:#0c141f;
     border:1px solid rgba(69,209,255,.35); color:var(--ink); padding:10px 14px; border-radius:10px;
-    box-shadow:0 10px 30px rgba(0,0,0,.5); display:none;
-  }
+    box-shadow:0 10px 30px rgba(0,0,0,.5); display:none;}
 </style>
 </head>
 <body>
@@ -125,7 +107,7 @@
         <div class="logo">🏈</div>
         <div>
           <div class="title">NFL Scores – Yesterday</div>
-          <div class="small">Guess the winner • tap reveal • vote 🔺🔻</div>
+          <div class="small">Guess the winner • then hit Reveal • vote 🔺🔻</div>
         </div>
       </div>
       <div class="small">Daily email before work • 100% free</div>
@@ -158,31 +140,35 @@
     ]
   };
 
-  // --- ticker ---
+  // ticker
   const t = document.getElementById('ticker');
   const chips = demo.games.map(g => `<span class="chip"><b>${g.away}</b> @ <b>${g.home}</b></span>`).join(' • ');
-  t.innerHTML = (chips + ' • ' + chips); // loop
+  t.innerHTML = chips + ' • ' + chips;
 
-  // --- build cards ---
+  // build cards
   const wrap = document.getElementById('games');
-  const y = document.getElementById('yr'); y.textContent = new Date().getFullYear();
-  let guesses = {}; // idx -> 'home' | 'away'
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const guesses = {}; // idx -> 'home' | 'away'
+  const revealed = {}; // prevent double reveal spam
 
   function cardHTML(g, idx){
     return `
-      <article class="card hide" data-idx="${idx}">
+      <article class="card" data-idx="${idx}">
         <div class="teams">
           <button class="guess" data-team="away-${idx}"><i>${g.awayEmoji}</i>${g.away}</button>
           <div class="small">at</div>
           <button class="guess" data-team="home-${idx}"><i>${g.homeEmoji}</i>${g.home}</button>
         </div>
+
         <div class="date-badge">Yesterday • ${demo.dateLabel}</div>
 
-        <div class="score score-val">
+        <div class="score blur" id="score-${idx}">
           <div class="score-num">${g.awayScore}</div>
-          <button class="reveal" data-reveal="${idx}">Reveal</button>
+          <div class="small">Final</div>
           <div class="score-num">${g.homeScore}</div>
         </div>
+
+        <button class="reveal-main" id="reveal-${idx}" data-reveal="${idx}" disabled>Reveal</button>
 
         <div class="small" id="guess-${idx}">Your guess: <b>—</b></div>
         <div class="vote">
@@ -199,6 +185,14 @@
     setTimeout(()=> el.style.display='none', 2000);
   };
 
+  // enable/disable reveal per card
+  function setRevealEnabled(idx, on){
+    const btn = document.getElementById(`reveal-${idx}`);
+    if(!btn) return;
+    btn.disabled = !on;
+    btn.classList.toggle('enabled', on);
+  }
+
   document.addEventListener('click', (e)=>{
     // choose guess
     const guessBtn = e.target.closest('.guess');
@@ -210,14 +204,19 @@
       const g = demo.games[idx];
       const picked = side==="home" ? g.home : g.away;
       document.getElementById(`guess-${idx}`).innerHTML = `Your guess: <b>${picked}</b>`;
+      setRevealEnabled(idx, true); // turn on the big button
     }
 
-    // reveal results
+    // reveal results (only if enabled)
     const rev = e.target.closest('[data-reveal]');
     if(rev){
       const idx = +rev.dataset.reveal;
-      const card = document.querySelector(`.card[data-idx="${idx}"]`);
-      card.classList.remove('hide');
+      if(rev.disabled) { toast('Pick a team first 🙂'); return; }
+      if(revealed[idx]) { return; }
+      revealed[idx] = true;
+
+      document.getElementById(`score-${idx}`).classList.remove('blur');
+
       const g = demo.games[idx];
       const winner = g.homeScore===g.awayScore ? 'Tie' : (g.homeScore>g.awayScore ? g.home : g.away);
       document.getElementById(`winner-${idx}`).innerHTML = `Winner: <b>${winner}</b>`;
